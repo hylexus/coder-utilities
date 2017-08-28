@@ -1,4 +1,6 @@
-package ${table.packageStr};
+<#if table.packageName?? && (table.packageName!"") != "">
+package ${table.packageName};
+</#if>
 
 <#list table.cols as c>
 	<#if c.javaType.isNeedGenerateImportStatement()>

@@ -6,18 +6,13 @@ import java.io.StringWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.util.HashMap;
-import java.util.Map;
 
 import org.junit.After;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
-import cn.hylexus.db.helper.DBHelperContext;
 import cn.hylexus.db.helper.converter.MySqlTypeConverter;
 import cn.hylexus.db.helper.entity.TableInfo;
-import cn.hylexus.db.helper.exception.UnSupportedDataTypeException;
 import freemarker.core.ParseException;
 import freemarker.template.Configuration;
 import freemarker.template.DefaultObjectWrapper;
@@ -38,12 +33,23 @@ public class DefaultDatabaseMetaDataAccessorTest {
 		this.conn = DriverManager.getConnection(url, username, password);
 	}
 
+	private Connection getConnection() {
+		String url = "jdbc:mysql://localhost:3306/test";
+		String username = "root";
+		String password = "root";
+		try {
+			return DriverManager.getConnection(url, username, password);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
 	@Before
 	public void init() throws SQLException {
 		this.initConnection();
 		this.accessor = new DefaultDatabaseMetaDataAccessor();
 		this.accessor.setConverter(new MySqlTypeConverter());
-		this.accessor.setContext(new DBHelperContext().connection(this.conn));
 	}
 
 	@After
@@ -55,7 +61,7 @@ public class DefaultDatabaseMetaDataAccessorTest {
 	@Test
 	public void test() {
 		try {
-			TableInfo tableInfo = this.accessor.getTableInfo("test", "t_user");
+			TableInfo tableInfo = this.accessor.getTableInfo(getConnection(), "t_user");
 			System.out.println(tableInfo);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -77,14 +83,14 @@ public class DefaultDatabaseMetaDataAccessorTest {
 	@Test
 	public void test1() {
 		try {
-			TableInfo tableInfo = this.accessor.getTableInfo("test", "t_user");
-			tableInfo.setPackageStr("cn.hylexus.app.entity");
+			TableInfo tableInfo = this.accessor.getTableInfo(getConnection(), "t_user");
+			tableInfo.setPackageName("cn.hylexus.app.entity");
 			tableInfo.getCols().stream().forEach(System.out::println);
 			StringWriter sw = new StringWriter();
 			XHRMap dataModel = new XHRMap()//
 					.kv("table", tableInfo)//
-					;
-			
+			;
+
 			this.getTemplate("TemplateOfPO.tpl").process(dataModel, sw);
 			System.out.println(sw.toString());
 		} catch (Exception e) {

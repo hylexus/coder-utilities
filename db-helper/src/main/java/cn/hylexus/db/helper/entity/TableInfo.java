@@ -11,25 +11,25 @@ import cn.hylexus.db.helper.utils.NamingUtils;
 
 public class TableInfo {
 
-	private String packageStr;
+	private String packageName;
 	private String name;
 	private String comments;
 	// 是否生成链式setter方法
 	private Boolean generateChainStyleStterMethod = true;
 	private List<ColumnInfo> cols = new ArrayList<>();
 
-	public String getPackageStr() {
-		return packageStr;
+	public String getPackageName() {
+		return packageName;
 	}
 
-	public void setPackageStr(String packageStr) {
-		this.packageStr = packageStr;
+	public void setPackageName(String packageName) {
+		this.packageName = packageName;
 	}
 
 	public String getCamelName() {
-		if (StringUtils.isBlank(name))
-			return name;
-		return NamingUtils.underLine2Camel(name, false);
+		if (StringUtils.isBlank(this.getName()))
+			return this.getName();
+		return NamingUtils.underLine2Camel(this.getName(), false);
 	}
 
 	public Boolean getGenerateChainStyleStterMethod() {

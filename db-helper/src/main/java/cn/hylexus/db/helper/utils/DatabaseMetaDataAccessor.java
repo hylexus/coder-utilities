@@ -1,5 +1,6 @@
 package cn.hylexus.db.helper.utils;
 
+import java.sql.Connection;
 import java.sql.SQLException;
 
 import cn.hylexus.db.helper.entity.TableInfo;
@@ -18,6 +19,6 @@ public interface DatabaseMetaDataAccessor {
 	final static String TABLE_PROP_TABLE_TYPE_TABLE = "TABLE";
 	final static String TABLE_PROP_TABLE_TYPE_VIEW = "VIEW";
 
-	TableInfo getTableInfo(String schema, String tableName) throws SQLException, UnSupportedDataTypeException, ClassNotFoundException;
+	TableInfo getTableInfo(Connection connection, String tableName) throws SQLException, UnSupportedDataTypeException, ClassNotFoundException;
 
 }

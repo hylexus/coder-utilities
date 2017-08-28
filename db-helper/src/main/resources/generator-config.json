@@ -1,0 +1,38 @@
+{
+	"jdbcConnectionConfig": {
+		"url": "jdbc:mysql://localhost:3306/test",
+		"user": "root",
+		"password": "root",
+		"driverClassName": "com.mysql.jdbc.Driver"
+	},
+	"globalConfig": {
+		"generateModelClass": true,
+		"generateMybatisMapperClass": true,
+		"generateMybatisXmlFile": true
+	},
+	"tableConfig": [
+		{
+			"name": "t_user",
+			"packageName": "com.hylexus.test.model",
+			"trimmedPrefix": "t_",
+			"appendedPrefix": "E_",
+			"trimmedSufix": "",
+			"appendedSufix": "PO"
+		},
+		{
+			"name": "t_order",
+			"packageName": "com.hylexus.test.model",
+			"trimmedPrefix": "t_",
+			"appendedPrefix": "E_",
+			"trimmedSufix": "",
+			"appendedSufix": "PO"
+		}
+	],
+	"modelConfig": {
+		"packageName": "com.hylexus.test.model",
+		"trimmedPrefix": "t_",
+		"appendedPrefix": "E_",
+		"trimmedSufix": "",
+		"appendedSufix": "PO"
+	}
+}

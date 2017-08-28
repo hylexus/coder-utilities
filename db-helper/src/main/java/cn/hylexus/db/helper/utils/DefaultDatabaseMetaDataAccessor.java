@@ -7,7 +7,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import cn.hylexus.db.helper.DBHelperContext;
 import cn.hylexus.db.helper.converter.SqlTypeConverter;
 import cn.hylexus.db.helper.entity.ColumnInfo;
 import cn.hylexus.db.helper.entity.JavaType;
@@ -16,26 +15,23 @@ import cn.hylexus.db.helper.exception.UnSupportedDataTypeException;
 
 public class DefaultDatabaseMetaDataAccessor implements DatabaseMetaDataAccessor {
 
-	private DBHelperContext context;
 	private SqlTypeConverter converter;
 
 	public DefaultDatabaseMetaDataAccessor() {
 	}
 
-	public DefaultDatabaseMetaDataAccessor(DBHelperContext context, SqlTypeConverter converter) {
+	public DefaultDatabaseMetaDataAccessor(SqlTypeConverter converter) {
 		super();
-		this.context = context;
 		this.converter = converter;
 	}
 
 	@Override
-	public TableInfo getTableInfo(String schema, String tableName) throws SQLException, UnSupportedDataTypeException, ClassNotFoundException {
-		Connection connection = this.context.getConnection();
+	public TableInfo getTableInfo(Connection connection, String tableName) throws SQLException, UnSupportedDataTypeException, ClassNotFoundException {
 		ResultSet columnSet = null;
 		try {
 			final DatabaseMetaData metaData = connection.getMetaData();
 
-			columnSet = metaData.getColumns(null, schema, tableName, null);
+			columnSet = metaData.getColumns(null, null, tableName, null);
 
 			// 获取列信息
 			final List<ColumnInfo> cols = getColumnInfo(columnSet);
@@ -69,19 +65,16 @@ public class DefaultDatabaseMetaDataAccessor implements DatabaseMetaDataAccessor
 		return cols;
 	}
 
-	public DBHelperContext getContext() {
-		return context;
-	}
-
-	public void setContext(DBHelperContext context) {
-		this.context = context;
-	}
-
 	public SqlTypeConverter getConverter() {
 		return converter;
 	}
 
 	public void setConverter(SqlTypeConverter converter) {
 		this.converter = converter;
+	}
+
+	public DefaultDatabaseMetaDataAccessor converter(SqlTypeConverter converter) {
+		this.converter = converter;
+		return this;
 	}
 }
