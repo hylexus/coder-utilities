@@ -1,5 +1,9 @@
 package cn.hylexus.db.helper.entity;
 
+import org.apache.commons.lang3.StringUtils;
+
+import cn.hylexus.db.helper.utils.NamingUtils;
+
 public class ColumnInfo {
 
 	private String name;
@@ -8,6 +12,18 @@ public class ColumnInfo {
 	private int length;
 	private int precision;
 	private JavaType javaType;
+
+	public String getSmallCamelName() {
+		if (StringUtils.isBlank(name))
+			return name;
+		return NamingUtils.underLine2Camel(name, true);
+	}
+
+	public String getBigCamelName() {
+		if (StringUtils.isBlank(name))
+			return name;
+		return NamingUtils.underLine2Camel(name, false);
+	}
 
 	public String getName() {
 		return name;
