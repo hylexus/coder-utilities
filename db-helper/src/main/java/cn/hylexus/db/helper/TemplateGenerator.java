@@ -1,21 +1,25 @@
 package cn.hylexus.db.helper;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.StringWriter;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
-import java.util.stream.Collectors;
+import java.util.Optional;
 
+import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import cn.hylexus.db.helper.config.DBHelperConfig;
+import cn.hylexus.db.helper.config.GeneratorConfig;
+import cn.hylexus.db.helper.config.GeneratorConfig.TableConfig;
 import cn.hylexus.db.helper.entity.TableInfo;
 import cn.hylexus.db.helper.exception.DBHelperCommonException;
-import cn.hylexus.db.helper.exception.UnSupportedDataTypeException;
+import cn.hylexus.db.helper.utils.DBHelperUtils;
 import cn.hylexus.db.helper.utils.DatabaseMetaDataAccessor;
 import cn.hylexus.db.helper.utils.DefaultDatabaseMetaDataAccessor;
 import cn.hylexus.db.helper.utils.XHRMap;
@@ -51,36 +55,69 @@ public class TemplateGenerator {
 		this.context = context;
 	}
 
-	public void generateTemplate() throws DBHelperCommonException {
+	public void generateTemplate() throws DBHelperCommonException, IOException {
 		try {
 
-			final DBHelperConfig config = context.getConfig();
+			final GeneratorConfig config = context.getConfig();
 			final Connection connection = context.getConnection();
-			final List<String> tablesList = config.getTableList();
-			if (tablesList == null || tablesList.size() == 0) {
-				throw new DBHelperCommonException("No tables specified to generate templates !");
-			}
 
-			for (String tableName : tablesList) {
+			List<TableConfig> tableconfig = config.getTableConfig();
+			for (TableConfig table : tableconfig) {
 				TableInfo info = null;
 				try {
-					info = this.dataAccessor.getTableInfo(connection, tableName);
+					info = this.dataAccessor.getTableInfo(connection, table.getName());
+
+					// override entities location configuration ?
+					if (StringUtils.isNotBlank(table.getPackageName())) {
+						info.setPackageName(table.getPackageName());
+					} else {
+						info.setPackageName(config.getGlobalConfig().getModelPackageName());
+					}
+
 				} catch (Exception e) {
 					e.printStackTrace();
-					logger.error("Skip template generate , because an error occured on retrieve table infomation with table name <<{}>> , please check your configuration and try again .", tableName);
+					logger.error("Skip template generate , because an error occured on retrieve table infomation with table name <<{}>> , please check your configuration and try again .",
+							table.getName());
 					continue;
 				}
 
+				FileWriter writer = null;
+
 				try {
+
+					final String path = FilenameUtils
+							.normalize(config.getGlobalConfig().getBaseDir() + "/" + "src/main/java/" + info.getPackageName().replaceAll("\\.", "/") + "/" + info.getCamelName() + ".java", true);
+					File file = new File(path);
+
+					// 不应该覆盖已经存在的实体类???
+					if (!DBHelperUtils.shouldBeOverride(//
+							Optional.ofNullable(config).map(e -> e.getGlobalConfig()).map(e -> e.isOverrideModelIfExists()).orElse(null), //
+							table.isOverrideIfExists())) {
+						if (file.exists()) {
+							continue;
+						}
+					}
+
+					if (!file.getParentFile().exists()) {
+						file.getParentFile().mkdirs();
+						file.createNewFile();
+					}
+					writer = new FileWriter(file);
 					final Template template = this.getTemplate("TemplateOfPO.tpl");
 					final StringWriter sw = new StringWriter();
 					final XHRMap dataModel = new XHRMap().kv("table", info);
+
 					template.process(dataModel, sw);
 					System.out.println(sw);
+					writer.write(sw.toString());
 				} catch (Exception e) {
 					logger.error("Skip template generate , because an error occured on generate template :");
 					e.printStackTrace();
 					continue;
+				} finally {
+					if (writer != null) {
+						writer.close();
+					}
 				}
 			}
 

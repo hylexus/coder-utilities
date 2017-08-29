@@ -7,6 +7,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import com.alibaba.fastjson.JSON;
 
+import cn.hylexus.db.helper.config.GeneratorConfig.TableConfig;
 import cn.hylexus.db.helper.utils.NamingUtils;
 
 public class TableInfo {
@@ -17,6 +18,20 @@ public class TableInfo {
 	// 是否生成链式setter方法
 	private Boolean generateChainStyleStterMethod = true;
 	private List<ColumnInfo> cols = new ArrayList<>();
+	private TableConfig tableConfig;
+
+	public TableConfig getTableconfig() {
+		return tableConfig;
+	}
+
+	public void setTableConfig(TableConfig tableConfig) {
+		this.tableConfig = tableConfig;
+	}
+
+	public TableInfo tableConfig(TableConfig tableConfig) {
+		this.tableConfig = tableConfig;
+		return this;
+	}
 
 	public String getPackageName() {
 		return packageName;

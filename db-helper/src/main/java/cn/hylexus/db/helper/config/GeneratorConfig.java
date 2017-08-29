@@ -4,41 +4,41 @@ import java.util.List;
 
 public class GeneratorConfig {
 
-	private Jdbcconnectionconfig jdbcconnectionconfig;
-	private Globalconfig globalconfig;
-	private List<Tableconfig> tableconfig;
-	private Modelconfig modelconfig;
+	private Jdbcconnectionconfig jdbcConnectionConfig;
+	private Globalconfig globalConfig;
+	private List<TableConfig> tableConfig;
+	private Modelconfig modelConfig;
 
-	public void setJdbcconnectionconfig(Jdbcconnectionconfig jdbcconnectionconfig) {
-		this.jdbcconnectionconfig = jdbcconnectionconfig;
+	public Jdbcconnectionconfig getJdbcConnectionConfig() {
+		return jdbcConnectionConfig;
 	}
 
-	public Jdbcconnectionconfig getJdbcconnectionconfig() {
-		return jdbcconnectionconfig;
+	public void setJdbcConnectionConfig(Jdbcconnectionconfig jdbcConnectionConfig) {
+		this.jdbcConnectionConfig = jdbcConnectionConfig;
 	}
 
-	public void setGlobalconfig(Globalconfig globalconfig) {
-		this.globalconfig = globalconfig;
+	public Globalconfig getGlobalConfig() {
+		return globalConfig;
 	}
 
-	public Globalconfig getGlobalconfig() {
-		return globalconfig;
+	public void setGlobalConfig(Globalconfig globalConfig) {
+		this.globalConfig = globalConfig;
 	}
 
-	public void setTableconfig(List<Tableconfig> tableconfig) {
-		this.tableconfig = tableconfig;
+	public List<TableConfig> getTableConfig() {
+		return tableConfig;
 	}
 
-	public List<Tableconfig> getTableconfig() {
-		return tableconfig;
+	public void setTableConfig(List<TableConfig> tableConfig) {
+		this.tableConfig = tableConfig;
 	}
 
-	public void setModelconfig(Modelconfig modelconfig) {
-		this.modelconfig = modelconfig;
+	public Modelconfig getModelConfig() {
+		return modelConfig;
 	}
 
-	public Modelconfig getModelconfig() {
-		return modelconfig;
+	public void setModelConfig(Modelconfig modelConfig) {
+		this.modelConfig = modelConfig;
 	}
 
 	public static class Modelconfig {
@@ -91,7 +91,7 @@ public class GeneratorConfig {
 
 	}
 
-	public static class Tableconfig {
+	public static class TableConfig {
 
 		private String name;
 		private String packageName;
@@ -99,6 +99,15 @@ public class GeneratorConfig {
 		private String appendedPrefix;
 		private String trimmedSufix;
 		private String appendedSufix;
+		private Boolean overrideIfExists;
+
+		public Boolean isOverrideIfExists() {
+			return overrideIfExists;
+		}
+
+		public void setOverrideIfExists(Boolean overrideIfExists) {
+			this.overrideIfExists = overrideIfExists;
+		}
 
 		public String getName() {
 			return name;
@@ -155,6 +164,33 @@ public class GeneratorConfig {
 		private boolean generateModelClass;
 		private boolean generateMybatisMapperClass;
 		private boolean generateMybatisXmlFile;
+		private String baseDir;
+		private String modelPackageName;
+		private Boolean overrideModelIfExists;
+
+		public Boolean isOverrideModelIfExists() {
+			return overrideModelIfExists;
+		}
+
+		public void setOverrideModelIfExists(Boolean overrideModelIfExists) {
+			this.overrideModelIfExists = overrideModelIfExists;
+		}
+
+		public String getBaseDir() {
+			return baseDir;
+		}
+
+		public void setBaseDir(String baseDir) {
+			this.baseDir = baseDir;
+		}
+
+		public String getModelPackageName() {
+			return modelPackageName;
+		}
+
+		public void setModelPackageName(String modelPackageName) {
+			this.modelPackageName = modelPackageName;
+		}
 
 		public boolean isGenerateModelClass() {
 			return generateModelClass;

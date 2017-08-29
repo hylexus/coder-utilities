@@ -8,7 +8,10 @@
 	"globalConfig": {
 		"generateModelClass": true,
 		"generateMybatisMapperClass": true,
-		"generateMybatisXmlFile": true
+		"generateMybatisXmlFile": true,
+		"baseDir": "/Users/hylexus/Documents/workspace/sts/boot-web",
+		"modelPackageName": "com.hylexus.test.model1",
+		"overrideModelIfExists": true
 	},
 	"tableConfig": [
 		{
@@ -17,7 +20,8 @@
 			"trimmedPrefix": "t_",
 			"appendedPrefix": "E_",
 			"trimmedSufix": "",
-			"appendedSufix": "PO"
+			"appendedSufix": "PO",
+			"overrideIfExists": true
 		},
 		{
 			"name": "t_order",

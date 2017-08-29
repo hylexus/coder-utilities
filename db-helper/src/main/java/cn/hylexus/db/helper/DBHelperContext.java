@@ -2,25 +2,25 @@ package cn.hylexus.db.helper;
 
 import java.sql.Connection;
 
-import cn.hylexus.db.helper.config.DBHelperConfig;
+import cn.hylexus.db.helper.config.GeneratorConfig;
 
 public class DBHelperContext {
 	private Connection connection;
-	private DBHelperConfig config;
+	private GeneratorConfig config;
 
 	public DBHelperContext() {
 	}
 
-	public void setConfig(DBHelperConfig config) {
+	public void setConfig(GeneratorConfig config) {
 		this.config = config;
 	}
 
-	public DBHelperContext config(DBHelperConfig config) {
+	public DBHelperContext config(GeneratorConfig config) {
 		this.config = config;
 		return this;
 	}
 
-	public DBHelperConfig getConfig() {
+	public GeneratorConfig getConfig() {
 		return config;
 	}
 
