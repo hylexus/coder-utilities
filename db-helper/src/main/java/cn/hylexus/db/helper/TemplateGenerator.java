@@ -16,9 +16,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import cn.hylexus.db.helper.config.GeneratorConfig;
+import cn.hylexus.db.helper.config.GeneratorConfig.Globalconfig;
+import cn.hylexus.db.helper.config.GeneratorConfig.Modelconfig;
 import cn.hylexus.db.helper.config.GeneratorConfig.TableConfig;
 import cn.hylexus.db.helper.entity.TableInfo;
 import cn.hylexus.db.helper.exception.DBHelperCommonException;
+import cn.hylexus.db.helper.exception.UnSupportedDataTypeException;
 import cn.hylexus.db.helper.utils.DBHelperUtils;
 import cn.hylexus.db.helper.utils.DatabaseMetaDataAccessor;
 import cn.hylexus.db.helper.utils.DefaultDatabaseMetaDataAccessor;
@@ -59,71 +62,110 @@ public class TemplateGenerator {
 		try {
 
 			final GeneratorConfig config = context.getConfig();
+			if (config == null) {
+				throw new DBHelperCommonException("配置信息为空");
+			}
 			final Connection connection = context.getConnection();
 
-			List<TableConfig> tableconfig = config.getTableConfig();
-			for (TableConfig table : tableconfig) {
+			final Optional<Modelconfig> modelConfig = Optional.ofNullable(config.getModelConfig());
+			final Optional<Globalconfig> globalConfig = Optional.ofNullable(config.getGlobalConfig());
+
+			final List<TableConfig> tableConfigs = config.getTableConfig();
+			for (TableConfig tableConfig : tableConfigs) {
 				TableInfo info = null;
 				try {
-					info = this.dataAccessor.getTableInfo(connection, table.getName());
-
-					// override entities location configuration ?
-					if (StringUtils.isNotBlank(table.getPackageName())) {
-						info.setPackageName(table.getPackageName());
-					} else {
-						info.setPackageName(config.getGlobalConfig().getModelPackageName());
-					}
-
+					info = this.converte2TableInfo(globalConfig, modelConfig, tableConfig, connection);
 				} catch (Exception e) {
 					e.printStackTrace();
 					logger.error("Skip template generate , because an error occured on retrieve table infomation with table name <<{}>> , please check your configuration and try again .",
-							table.getName());
+							tableConfig.getName());
 					continue;
 				}
 
-				FileWriter writer = null;
+				// 是否应该生成实体类
+				if (globalConfig.map(Globalconfig::isGenerateModelClass).orElse(true)) {
+					this.generateModelClass(globalConfig, modelConfig, tableConfig, info);
+				}
 
-				try {
-
-					final String path = FilenameUtils
-							.normalize(config.getGlobalConfig().getBaseDir() + "/" + "src/main/java/" + info.getPackageName().replaceAll("\\.", "/") + "/" + info.getCamelName() + ".java", true);
-					File file = new File(path);
-
-					// 不应该覆盖已经存在的实体类???
-					if (!DBHelperUtils.shouldBeOverride(//
-							Optional.ofNullable(config).map(e -> e.getGlobalConfig()).map(e -> e.isOverrideModelIfExists()).orElse(null), //
-							table.isOverrideIfExists())) {
-						if (file.exists()) {
-							continue;
-						}
-					}
-
-					if (!file.getParentFile().exists()) {
-						file.getParentFile().mkdirs();
-						file.createNewFile();
-					}
-					writer = new FileWriter(file);
-					final Template template = this.getTemplate("TemplateOfPO.tpl");
-					final StringWriter sw = new StringWriter();
-					final XHRMap dataModel = new XHRMap().kv("table", info);
-
-					template.process(dataModel, sw);
-					System.out.println(sw);
-					writer.write(sw.toString());
-				} catch (Exception e) {
-					logger.error("Skip template generate , because an error occured on generate template :");
-					e.printStackTrace();
-					continue;
-				} finally {
-					if (writer != null) {
-						writer.close();
-					}
+				// 是否应该生成XXXMapper.java文件
+				if (globalConfig.map(Globalconfig::isGenerateMybatisMapperClass).orElse(true)) {
+					System.out.println("...");
 				}
 			}
 
 		} finally {
 			this.releaseResource();
 		}
+	}
+
+	private void generateModelClass(final Optional<Globalconfig> globalConfig, Optional<Modelconfig> modelConfig, TableConfig tableConfig, TableInfo info) throws IOException {
+		FileWriter writer = null;
+		try {
+
+			String modelClassPath = String.join("/", //
+					globalConfig.map(Globalconfig::getBaseDir).orElseThrow(() -> new DBHelperCommonException("请指定模板位置:globalConfig.baseDir")), //
+					"src/main/java/", //
+					info.getPackageName().replaceAll("\\.", "/"), //
+					info.getCamelName()//
+			);
+			File file = new File(FilenameUtils.normalize(modelClassPath + ".java", true));
+
+			// 不应该覆盖已经存在的实体类???
+			if (!DBHelperUtils.shouldBeOverride(//
+					globalConfig.map(Globalconfig::getOverrideModelIfExists).orElse(null), //
+					modelConfig.map(Modelconfig::getOverrideIfExists).orElse(true))) {
+				if (file.exists()) {
+					return;
+				}
+			}
+
+			if (!file.getParentFile().exists()) {
+				file.getParentFile().mkdirs();
+				file.createNewFile();
+			}
+			writer = new FileWriter(file);
+			final Template template = this.getTemplate(DBHelperContext.tmplate_file_name_of_po);
+			final StringWriter sw = new StringWriter();
+			final XHRMap dataModel = new XHRMap().kv("table", info);
+
+			template.process(dataModel, sw);
+			System.out.println(sw);
+			writer.write(sw.toString());
+		} catch (Exception e) {
+			logger.error("Skip template generate , because an error occured on generate template :");
+			e.printStackTrace();
+			return;
+		} finally {
+			if (writer != null) {
+				writer.close();
+			}
+		}
+	}
+
+	private TableInfo converte2TableInfo(final Optional<Globalconfig> globalConfig, final Optional<Modelconfig> modelConfig, TableConfig tableConfig, final Connection connection)
+			throws SQLException, UnSupportedDataTypeException, ClassNotFoundException, DBHelperCommonException {
+		TableInfo info;
+		info = this.dataAccessor.getTableInfo(connection, tableConfig.getName());
+
+		// 是否应该覆盖已经存在的实体类 ?
+		if (StringUtils.isNotBlank(tableConfig.getPackageName())) {
+			info.setPackageName(tableConfig.getPackageName());
+		} else {
+			info.setPackageName(globalConfig.map(Globalconfig::getModelPackageName).orElseThrow(() -> new DBHelperCommonException("请指定实体类包名")));
+		}
+
+		// 是否生成用于链式调用的setter方法
+		if (tableConfig.getGenerateChainStyleStterMethod() == null) {
+			info.setGenerateChainStyleStterMethod(tableConfig.getGenerateChainStyleStterMethod());
+		} else {
+			info.setGenerateChainStyleStterMethod(modelConfig.map(Modelconfig::getGenerateChainStyleStterMethod).orElse(false));
+		}
+
+		// 生成实体类时替换指定的前缀或后缀
+		info.setTrimmedPrefix(modelConfig.map(Modelconfig::getTrimmedPrefix).orElse(""));
+		info.setAppendedPrefix(modelConfig.map(Modelconfig::getAppendedPrefix).orElse(""));
+		info.setAppendedSufix(modelConfig.map(Modelconfig::getAppendedSufix).orElse(""));
+		return info;
 	}
 
 	private Template getTemplate(String templateName) throws IOException, TemplateNotFoundException, MalformedTemplateNameException, ParseException {

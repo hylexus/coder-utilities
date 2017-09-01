@@ -16,11 +16,16 @@ public class TableInfo {
 	private String name;
 	private String comments;
 	// 是否生成链式setter方法
-	private Boolean generateChainStyleStterMethod = true;
+	private Boolean generateChainStyleStterMethod = false;
 	private List<ColumnInfo> cols = new ArrayList<>();
 	private TableConfig tableConfig;
 
-	public TableConfig getTableconfig() {
+	// others
+	private String trimmedPrefix = "";
+	private String appendedPrefix = "";
+	private String appendedSufix = "";
+
+	public TableConfig getTableConfig() {
 		return tableConfig;
 	}
 
@@ -44,7 +49,7 @@ public class TableInfo {
 	public String getCamelName() {
 		if (StringUtils.isBlank(this.getName()))
 			return this.getName();
-		return NamingUtils.underLine2Camel(this.getName(), false);
+		return NamingUtils.underLine2Camel(this.getAppendedPrefix() + this.getName().replaceFirst(this.getTrimmedPrefix(), "") + this.getAppendedSufix(), false);
 	}
 
 	public Boolean getGenerateChainStyleStterMethod() {
@@ -52,7 +57,8 @@ public class TableInfo {
 	}
 
 	public void setGenerateChainStyleStterMethod(Boolean generateChainStyleStterMethod) {
-		this.generateChainStyleStterMethod = generateChainStyleStterMethod;
+		if (generateChainStyleStterMethod != null)
+			this.generateChainStyleStterMethod = generateChainStyleStterMethod;
 	}
 
 	public String getName() {
@@ -77,6 +83,33 @@ public class TableInfo {
 
 	public void setCols(List<ColumnInfo> cols) {
 		this.cols = cols;
+	}
+
+	public String getTrimmedPrefix() {
+		return trimmedPrefix;
+	}
+
+	public void setTrimmedPrefix(String trimmedPrefix) {
+		if (trimmedPrefix != null)
+			this.trimmedPrefix = trimmedPrefix;
+	}
+
+	public String getAppendedPrefix() {
+		return appendedPrefix;
+	}
+
+	public void setAppendedPrefix(String appendedPrefix) {
+		if (appendedPrefix != null)
+			this.appendedPrefix = appendedPrefix;
+	}
+
+	public String getAppendedSufix() {
+		return appendedSufix;
+	}
+
+	public void setAppendedSufix(String appendedSufix) {
+		if (appendedSufix != null)
+			this.appendedSufix = appendedSufix;
 	}
 
 	@Override

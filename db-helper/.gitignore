@@ -4,6 +4,7 @@
 .gradle
 bin/
 *.tmp
+*.log.*
 *.bak
 *.swp
 *~.nib

@@ -5,6 +5,9 @@ import java.sql.Connection;
 import cn.hylexus.db.helper.config.GeneratorConfig;
 
 public class DBHelperContext {
+
+	public static final String tmplate_file_name_of_po = "TemplateOfPO.tpl";
+
 	private Connection connection;
 	private GeneratorConfig config;
 

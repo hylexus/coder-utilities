@@ -46,8 +46,25 @@ public class GeneratorConfig {
 		private String packageName;
 		private String trimmedPrefix;
 		private String appendedPrefix;
-		private String trimmedSufix;
 		private String appendedSufix;
+		private Boolean generateChainStyleStterMethod;
+		private Boolean overrideIfExists = true;
+
+		public Boolean getOverrideIfExists() {
+			return overrideIfExists;
+		}
+
+		public void setOverrideIfExists(Boolean overrideIfExists) {
+			this.overrideIfExists = overrideIfExists;
+		}
+
+		public Boolean getGenerateChainStyleStterMethod() {
+			return generateChainStyleStterMethod;
+		}
+
+		public void setGenerateChainStyleStterMethod(Boolean generateChainStyleStterMethod) {
+			this.generateChainStyleStterMethod = generateChainStyleStterMethod;
+		}
 
 		public String getPackageName() {
 			return packageName;
@@ -73,20 +90,13 @@ public class GeneratorConfig {
 			this.appendedPrefix = appendedPrefix;
 		}
 
-		public String getTrimmedSufix() {
-			return trimmedSufix;
-		}
-
-		public void setTrimmedSufix(String trimmedSufix) {
-			this.trimmedSufix = trimmedSufix;
-		}
-
 		public String getAppendedSufix() {
 			return appendedSufix;
 		}
 
 		public void setAppendedSufix(String appendedSufix) {
-			this.appendedSufix = appendedSufix;
+			if (appendedSufix != null)
+				this.appendedSufix = appendedSufix;
 		}
 
 	}
@@ -95,18 +105,24 @@ public class GeneratorConfig {
 
 		private String name;
 		private String packageName;
-		private String trimmedPrefix;
-		private String appendedPrefix;
-		private String trimmedSufix;
-		private String appendedSufix;
-		private Boolean overrideIfExists;
+		private Boolean generateChainStyleStterMethod = null;
+		private String mapperClassPackageName;
 
-		public Boolean isOverrideIfExists() {
-			return overrideIfExists;
+		public String getMapperClassPackageName() {
+			return mapperClassPackageName;
 		}
 
-		public void setOverrideIfExists(Boolean overrideIfExists) {
-			this.overrideIfExists = overrideIfExists;
+		public void setMapperClassPackageName(String mapperClassPackageName) {
+			this.mapperClassPackageName = mapperClassPackageName;
+		}
+
+		public Boolean getGenerateChainStyleStterMethod() {
+			return generateChainStyleStterMethod;
+		}
+
+		public void setGenerateChainStyleStterMethod(Boolean generateChainStyleStterMethod) {
+			if (generateChainStyleStterMethod != null)
+				this.generateChainStyleStterMethod = generateChainStyleStterMethod;
 		}
 
 		public String getName() {
@@ -125,71 +141,33 @@ public class GeneratorConfig {
 			this.packageName = packageName;
 		}
 
-		public String getTrimmedPrefix() {
-			return trimmedPrefix;
-		}
-
-		public void setTrimmedPrefix(String trimmedPrefix) {
-			this.trimmedPrefix = trimmedPrefix;
-		}
-
-		public String getAppendedPrefix() {
-			return appendedPrefix;
-		}
-
-		public void setAppendedPrefix(String appendedPrefix) {
-			this.appendedPrefix = appendedPrefix;
-		}
-
-		public String getTrimmedSufix() {
-			return trimmedSufix;
-		}
-
-		public void setTrimmedSufix(String trimmedSufix) {
-			this.trimmedSufix = trimmedSufix;
-		}
-
-		public String getAppendedSufix() {
-			return appendedSufix;
-		}
-
-		public void setAppendedSufix(String appendedSufix) {
-			this.appendedSufix = appendedSufix;
-		}
-
 	}
 
 	public static class Globalconfig {
 
-		private boolean generateModelClass;
-		private boolean generateMybatisMapperClass;
-		private boolean generateMybatisXmlFile;
+		private boolean generateModelClass = true;
+		private boolean generateMybatisMapperClass = true;
+		private boolean generateMybatisXmlFile = true;
 		private String baseDir;
 		private String modelPackageName;
 		private Boolean overrideModelIfExists;
+		private String mapperClassPackageName;
+		private Boolean overrideModelClassIfExists;
 
-		public Boolean isOverrideModelIfExists() {
-			return overrideModelIfExists;
+		public Boolean getOverrideModelClassIfExists() {
+			return overrideModelClassIfExists;
 		}
 
-		public void setOverrideModelIfExists(Boolean overrideModelIfExists) {
-			this.overrideModelIfExists = overrideModelIfExists;
+		public void setOverrideModelClassIfExists(Boolean overrideModelClassIfExists) {
+			this.overrideModelClassIfExists = overrideModelClassIfExists;
 		}
 
-		public String getBaseDir() {
-			return baseDir;
+		public String getMapperClassPackageName() {
+			return mapperClassPackageName;
 		}
 
-		public void setBaseDir(String baseDir) {
-			this.baseDir = baseDir;
-		}
-
-		public String getModelPackageName() {
-			return modelPackageName;
-		}
-
-		public void setModelPackageName(String modelPackageName) {
-			this.modelPackageName = modelPackageName;
+		public void setMapperClassPackageName(String mapperClassPackageName) {
+			this.mapperClassPackageName = mapperClassPackageName;
 		}
 
 		public boolean isGenerateModelClass() {
@@ -214,6 +192,30 @@ public class GeneratorConfig {
 
 		public void setGenerateMybatisXmlFile(boolean generateMybatisXmlFile) {
 			this.generateMybatisXmlFile = generateMybatisXmlFile;
+		}
+
+		public String getBaseDir() {
+			return baseDir;
+		}
+
+		public void setBaseDir(String baseDir) {
+			this.baseDir = baseDir;
+		}
+
+		public String getModelPackageName() {
+			return modelPackageName;
+		}
+
+		public void setModelPackageName(String modelPackageName) {
+			this.modelPackageName = modelPackageName;
+		}
+
+		public Boolean getOverrideModelIfExists() {
+			return overrideModelIfExists;
+		}
+
+		public void setOverrideModelIfExists(Boolean overrideModelIfExists) {
+			this.overrideModelIfExists = overrideModelIfExists;
 		}
 
 	}
