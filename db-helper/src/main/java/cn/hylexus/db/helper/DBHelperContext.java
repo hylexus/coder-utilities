@@ -7,6 +7,7 @@ import cn.hylexus.db.helper.config.GeneratorConfig;
 public class DBHelperContext {
 
 	public static final String tmplate_file_name_of_po = "TemplateOfPO.tpl";
+	public static final String tmplate_file_name_of_mapper = "TmplateOfMapperClassFile.tpl";
 
 	private Connection connection;
 	private GeneratorConfig config;

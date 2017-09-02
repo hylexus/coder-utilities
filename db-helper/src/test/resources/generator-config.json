@@ -10,22 +10,16 @@
 		"generateMybatisMapperClass": true,
 		"generateMybatisXmlFile": true,
 		"baseDir": "/Users/hylexus/Documents/workspace/sts/boot-web",
-		"modelPackageName": "com.hylexus.test.model1",
-		"overrideModelIfExists": true,
-		"mapperClassPackageName": "com.hylexus.test.dao",
-		"overrideModelClassIfExists": true
+		"namingStrategyClassName": "cn.hylexus.db.helper.converter.naming.CamelNamingStrategy"
 	},
 	"tableConfig": [
 		{
-			"name": "t_user",
-			"packageName": "com.hylexus.test.model",
-			"overrideIfExists": true,
+			"tableName": "t_user",
+			"modelPackageName": "com.hylexus.test.model",
+			"modelName": "",
 			"generateChainStyleStterMethod": false,
-			"mapperClassPackageName": "com.hylexus.test.dao"
-		},
-		{
-			"name": "t_order",
-			"packageName": "com.hylexus.test.model"
+			"mapperClassPackageName": "com.hylexus.test.dao",
+			"mapperClassName": ""
 		}
 	],
 	"modelConfig": {
@@ -33,12 +27,18 @@
 		"trimmedPrefix": "t_",
 		"appendedPrefix": "",
 		"appendedSufix": "PO",
-		"generateChainStyleStterMethod": true
+		"generateChainStyleStterMethod": true,
+		"overrideIfExists": true,
+		"namingStrategyClassName": "cn.hylexus.db.helper.converter.naming.CamelNamingStrategy"
 	},
 	"mapperClassConfig": {
-		"packageName": "com.hylexus.test.dao",
+		"packageName": "com.hylexus.test.dao1",
 		"appendedSufix": "Mapper",
 		"overrideIfExists": true,
-		"generateSelectMethodByPrimaryKey": true
+		"generateSelectMethodByPrimaryKey": true,
+		"generateInsertMethod": true,
+		"generateUpdateMethod": true,
+		"generateDeleteMethodByPrimaryKey": true,
+		"generateFinalAllMethod": true
 	}
 }

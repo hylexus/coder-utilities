@@ -1,7 +1,7 @@
 package cn.hylexus.db.helper.entity;
 
-import org.apache.commons.lang3.StringUtils;
-
+import cn.hylexus.db.helper.converter.naming.NamingStrategy;
+import cn.hylexus.db.helper.exception.DBHelperCommonException;
 import cn.hylexus.db.helper.utils.NamingUtils;
 
 public class ColumnInfo {
@@ -12,17 +12,22 @@ public class ColumnInfo {
 	private int length;
 	private int precision;
 	private JavaType javaType;
+	private NamingStrategy namingStrategy;
 
-	public String getSmallCamelName() {
-		if (StringUtils.isBlank(name))
-			return name;
-		return NamingUtils.underLine2Camel(name, true);
+	public String getFieldName() throws DBHelperCommonException {
+		return this.namingStrategy.getFieldName(name);
 	}
 
-	public String getBigCamelName() {
-		if (StringUtils.isBlank(name))
-			return name;
-		return NamingUtils.underLine2Camel(name, false);
+	public String getMethodName() throws DBHelperCommonException {
+		return NamingUtils.firstChar2UpperCase(this.getFieldName());
+	}
+
+	public void setNamingStrategy(NamingStrategy namingStrategy) {
+		this.namingStrategy = namingStrategy;
+	}
+
+	public NamingStrategy getNamingStrategy() {
+		return namingStrategy;
 	}
 
 	public String getName() {

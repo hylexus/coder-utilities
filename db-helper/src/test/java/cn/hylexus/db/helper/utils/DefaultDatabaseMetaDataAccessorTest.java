@@ -84,7 +84,7 @@ public class DefaultDatabaseMetaDataAccessorTest {
 	public void test1() {
 		try {
 			TableInfo tableInfo = this.accessor.getTableInfo(getConnection(), "t_user");
-			tableInfo.setPackageName("cn.hylexus.app.entity");
+			tableInfo.setModelPackageName("cn.hylexus.app.entity");
 			tableInfo.getCols().stream().forEach(System.out::println);
 			StringWriter sw = new StringWriter();
 			XHRMap dataModel = new XHRMap()//

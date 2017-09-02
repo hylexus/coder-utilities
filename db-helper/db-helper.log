@@ -1,7 +1,26 @@
-2017-09-01 20:59:35,889 [ERROR] - freemarker.runtime -_Log4jLoggerFactory.java(60) -Error executing FreeMarker template
+2017-09-02 19:26:47,704 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(88) -1. 生成实体类结束
+  2017-09-02 19:26:47,723 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(88) -1. 生成实体类结束
+  2017-09-02 19:27:19,124 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(88) -1. 生成实体类UserPO结束
+  2017-09-02 19:27:19,138 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(88) -1. 生成实体类OrderPO结束
+  2017-09-02 19:27:50,444 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(86) -开始生成实体类:
+  2017-09-02 19:27:50,599 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(89) -UserPO 完成
+  2017-09-02 19:27:50,602 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(86) -开始生成实体类:
+  2017-09-02 19:27:50,613 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(89) -OrderPO 完成
+  2017-09-02 19:28:20,036 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(88) -UserPO 实体类生成完毕
+  2017-09-02 19:28:20,051 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(88) -OrderPO 实体类生成完毕
+  2017-09-02 19:28:47,448 [ERROR] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(81) -Skip template generate , because an error occured on retrieve table infomation with table name <<t_user>> , please check your configuration and try again .
+  2017-09-02 19:28:47,454 [ERROR] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(81) -Skip template generate , because an error occured on retrieve table infomation with table name <<t_order>> , please check your configuration and try again .
+  2017-09-02 19:29:05,737 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(88) -UserPO 实体类生成完毕
+  2017-09-02 19:29:05,751 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(88) -OrderPO 实体类生成完毕
+  2017-09-02 19:31:06,566 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(88) -UserPO 实体类生成完毕
+  2017-09-02 19:46:00,248 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(96) -UserPO 实体类生成完毕
+  2017-09-02 19:50:16,018 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(94) -UserPO 实体类生成完毕
+  2017-09-02 19:50:31,140 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(94) -UserPO 实体类生成完毕
+  2017-09-02 19:58:59,372 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(94) -UserPO 实体类生成完毕
+  2017-09-02 20:02:54,821 [ERROR] - freemarker.runtime -_Log4jLoggerFactory.java(60) -Error executing FreeMarker template
   FreeMarker template error:
 The following has evaluated to null or missing:
-==> table.generateChainStyleStterMethod  [in template "TemplateOfPO.tpl" at line 41, column 6]
+==> table.modelName  [in template "TemplateOfPO.tpl" at line 11, column 16]
 
 ----
 Tip: It's the step after the last dot that caused this error, not those before it.
@@ -11,26 +30,23 @@ Tip: If the failing expression is known to be legally refer to something that's 
 
 ----
 FTL stack trace ("~" means nesting-related):
-	- Failed at: #if table.generateChainStyleStterMethod  [in template "TemplateOfPO.tpl" at line 41, column 1]
+	- Failed at: ${table.modelName}  [in template "TemplateOfPO.tpl" at line 11, column 14]
 ----
 
 Java stack trace (for programmers):
 ----
 freemarker.core.InvalidReferenceException: [... Exception message was already printed; see it above ...]
 	at freemarker.core.InvalidReferenceException.getInstance(InvalidReferenceException.java:131)
-	at freemarker.core.UnexpectedTypeException.newDesciptionBuilder(UnexpectedTypeException.java:77)
-	at freemarker.core.UnexpectedTypeException.<init>(UnexpectedTypeException.java:40)
-	at freemarker.core.NonBooleanException.<init>(NonBooleanException.java:44)
-	at freemarker.core.Expression.modelToBoolean(Expression.java:142)
-	at freemarker.core.Expression.evalToBoolean(Expression.java:125)
-	at freemarker.core.Expression.evalToBoolean(Expression.java:110)
-	at freemarker.core.ConditionalBlock.accept(ConditionalBlock.java:46)
+	at freemarker.core.EvalUtil.coerceModelToString(EvalUtil.java:355)
+	at freemarker.core.Expression.evalAndCoerceToString(Expression.java:82)
+	at freemarker.core.DollarVariable.accept(DollarVariable.java:41)
 	at freemarker.core.Environment.visit(Environment.java:324)
 	at freemarker.core.MixedContent.accept(MixedContent.java:54)
 	at freemarker.core.Environment.visit(Environment.java:324)
 	at freemarker.core.Environment.process(Environment.java:302)
 	at freemarker.template.Template.process(Template.java:325)
-	at cn.hylexus.db.helper.TemplateGenerator.generateTemplate(TemplateGenerator.java:134)
+	at cn.hylexus.db.helper.TemplateGenerator.generateModelClass(TemplateGenerator.java:136)
+	at cn.hylexus.db.helper.TemplateGenerator.generateTemplate(TemplateGenerator.java:93)
 	at cn.hylexus.db.helper.TemplateGeneratorTest.testGenerateTemplate(TemplateGeneratorTest.java:97)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
@@ -55,21 +71,114 @@ freemarker.core.InvalidReferenceException: [... Exception message was already pr
 	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:678)
 	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:382)
 	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:192)
-2017-09-01 20:59:35,894 [ERROR] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(138) -Skip template generate , because an error occured on generate template :
-  2017-09-01 21:00:11,344 [ERROR] - freemarker.runtime -_Log4jLoggerFactory.java(60) -Error executing FreeMarker template
+2017-09-02 20:02:54,828 [ERROR] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(140) -Skip template generate , because an error occured on generate template :
+  2017-09-02 20:02:54,830 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(94) -UserPO 实体类生成完毕
+  2017-09-02 20:09:08,351 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(94) -UserPO 实体类生成完毕
+  2017-09-02 20:09:20,285 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(94) -UserPO 实体类生成完毕
+  2017-09-02 20:10:04,158 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(94) -UserPO 实体类生成完毕
+  2017-09-02 20:10:31,547 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(94) -UserPO 实体类生成完毕
+  2017-09-02 20:10:58,826 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(94) -UserPO 实体类生成完毕
+  2017-09-02 20:11:22,129 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(94) -UserPO 实体类生成完毕
+  2017-09-02 20:14:43,301 [ERROR] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(140) -Skip template generate , because an error occured on generate template :
+  2017-09-02 20:14:43,314 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(94) -UserPO 实体类生成完毕
+  2017-09-02 20:15:34,711 [ERROR] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(140) -Skip template generate , because an error occured on generate template :
+  2017-09-02 20:15:34,724 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(94) -UserPO 实体类生成完毕
+  2017-09-02 20:15:49,366 [ERROR] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(140) -Skip template generate , because an error occured on generate template :
+  2017-09-02 20:15:49,378 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(94) -UserPO 实体类生成完毕
+  2017-09-02 20:17:46,444 [ERROR] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(140) -Skip template generate , because an error occured on generate template :
+  2017-09-02 20:17:46,448 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(94) -UserPO 实体类生成完毕
+  2017-09-02 20:20:41,173 [ERROR] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(140) -Skip template generate , because an error occured on generate template :
+  2017-09-02 20:20:41,177 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(94) -UserPO 实体类生成完毕
+  2017-09-02 20:21:02,332 [ERROR] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(140) -Skip template generate , because an error occured on generate template :
+  2017-09-02 20:21:02,336 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(94) -null 实体类生成完毕
+  2017-09-02 20:22:08,588 [ERROR] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(140) -Skip template generate , because an error occured on generate template :
+  2017-09-02 20:22:08,593 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(94) -null 实体类生成完毕
+  2017-09-02 20:22:37,233 [ERROR] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(140) -Skip template generate , because an error occured on generate template :
+  2017-09-02 20:22:37,239 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(94) -null 实体类生成完毕
+  2017-09-02 20:22:52,921 [ERROR] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(140) -Skip template generate , because an error occured on generate template :
+  2017-09-02 20:22:52,926 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(94) -null 实体类生成完毕
+  2017-09-02 20:24:16,481 [ERROR] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(140) -Skip template generate , because an error occured on generate template :
+  2017-09-02 20:24:16,486 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(94) -null 实体类生成完毕
+  2017-09-02 20:32:58,900 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(94) -UserPO 实体类生成完毕
+  2017-09-02 20:33:32,251 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(94) -UserPO 实体类生成完毕
+  2017-09-02 20:33:57,533 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(94) -UserPO 实体类生成完毕
+  2017-09-02 20:37:02,962 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(94) -UserPO 实体类生成完毕
+  2017-09-02 20:38:01,975 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(94) -UserPO 实体类生成完毕
+  2017-09-02 20:38:09,039 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(94) -UserPO 实体类生成完毕
+  2017-09-02 20:38:40,391 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(94) -UserPO 实体类生成完毕
+  2017-09-02 20:39:22,849 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(94) -UserPO 实体类生成完毕
+  2017-09-02 20:44:22,943 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(94) -USER 实体类生成完毕
+  2017-09-02 20:44:47,154 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(94) -USER 实体类生成完毕
+  2017-09-02 20:51:12,328 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(94) -USER 实体类生成完毕
+  2017-09-02 20:54:46,510 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(94) -USER 实体类生成完毕
+  2017-09-02 20:55:11,118 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(94) -USER 实体类生成完毕
+  2017-09-02 20:55:47,127 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(94) -USER 实体类生成完毕
+  2017-09-02 20:56:22,701 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(94) -USER 实体类生成完毕
+  2017-09-02 20:57:06,689 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(94) -USER 实体类生成完毕
+  2017-09-02 20:58:14,959 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(94) -USER 实体类生成完毕
+  2017-09-02 21:00:07,789 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(94) -UserPO 实体类生成完毕
+  2017-09-02 21:35:23,295 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(94) -UserPO 实体类生成完毕
+  2017-09-02 21:45:40,505 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(94) -UserPO 实体类生成完毕
+  2017-09-02 21:45:51,327 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(94) -UserPO 实体类生成完毕
+  2017-09-02 21:46:13,785 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(94) -UserPO 实体类生成完毕
+  2017-09-02 21:46:45,847 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(94) -UserPO 实体类生成完毕
+  2017-09-02 21:47:13,327 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(94) -UserPO 实体类生成完毕
+  2017-09-02 22:22:54,112 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(96) -UserPO 实体类生成完毕
+  2017-09-02 22:25:14,817 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(96) -UserPO 实体类生成完毕
+  2017-09-02 22:26:11,080 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(96) -UserPO 实体类生成完毕
+  2017-09-02 22:26:18,073 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(96) -UserPO 实体类生成完毕
+  2017-09-02 22:26:27,195 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(96) -UserPO 实体类生成完毕
+  2017-09-02 22:26:41,890 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(96) -UserPO 实体类生成完毕
+  2017-09-02 22:37:45,173 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(96) -UserPO 实体类生成完毕
+  2017-09-02 22:37:59,591 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(96) -UserPO 实体类生成完毕
+  2017-09-02 22:41:52,504 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(96) -UserPO 实体类生成完毕
+  2017-09-02 22:42:15,912 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(96) -UserPO 实体类生成完毕
+  2017-09-02 22:43:15,014 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(96) -UserPO 实体类生成完毕
+  2017-09-02 22:44:43,921 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(96) -UserPO 实体类生成完毕
+  2017-09-02 22:45:27,400 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(96) -UserPO 实体类生成完毕
+  2017-09-02 22:46:23,500 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(96) -UserPO 实体类生成完毕
+  2017-09-02 22:46:43,129 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(96) -UserPO 实体类生成完毕
+  2017-09-02 22:51:19,285 [ERROR] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(88) -Skip template generate , because an error occured on retrieve table infomation with table name <<t_user>> , please check your configuration and try again .
+  2017-09-02 22:52:46,850 [ERROR] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(88) -Skip template generate , because an error occured on retrieve table infomation with table name <<t_user>> , please check your configuration and try again .
+  2017-09-02 22:53:07,269 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(96) -UserPO 实体类生成完毕
+  2017-09-02 22:53:45,589 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(96) -UserPO 实体类生成完毕
+  2017-09-02 22:53:55,098 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(96) -UserPO 实体类生成完毕
+  2017-09-02 22:59:37,662 [ERROR] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(88) -Skip template generate , because an error occured on retrieve table infomation with table name <<t_user>> , please check your configuration and try again .
+  2017-09-02 23:00:03,445 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(96) -UserPO 实体类生成完毕
+  2017-09-02 23:07:37,837 [ERROR] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(88) -Skip template generate , because an error occured on retrieve table infomation with table name <<t_user>> , please check your configuration and try again .
+  2017-09-02 23:08:12,743 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(96) -UserPO 实体类生成完毕
+  2017-09-02 23:08:27,019 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(96) -UserPO 实体类生成完毕
+  2017-09-02 23:10:24,276 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(96) -UserPO 实体类生成完毕
+  2017-09-02 23:11:40,646 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(96) -UserPO 实体类生成完毕
+  2017-09-02 23:14:40,943 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(96) -UserPO 实体类生成完毕
+  2017-09-02 23:16:06,140 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(96) -UserPO 实体类生成完毕
+  2017-09-02 23:18:59,942 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(96) -UserPO 实体类生成完毕
+  2017-09-02 23:21:11,569 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(97) -UserPO 实体类生成完毕
+  2017-09-02 23:21:18,351 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(97) -UserPO 实体类生成完毕
+  2017-09-02 23:21:18,353 [ERROR] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(140) -Skip template generate , because an error occured on generate template :
+  2017-09-02 23:21:31,471 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(97) -UserPO 实体类生成完毕
+  2017-09-02 23:22:32,932 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(97) -UserPO 实体类生成完毕
+  2017-09-02 23:22:53,769 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(97) -UserPO 实体类生成完毕
+  2017-09-02 23:24:37,975 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(97) -UserPO 实体类生成完毕
+  2017-09-02 23:24:37,979 [ERROR] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(140) -Skip template generate , because an error occured on generate template :
+  2017-09-02 23:25:23,887 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(97) -UserPO 实体类生成完毕
+  2017-09-02 23:25:23,891 [ERROR] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(140) -Skip template generate , because an error occured on generate template :
+  2017-09-02 23:25:59,006 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(97) -UserPO 实体类生成完毕
+  2017-09-02 23:31:50,483 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(97) -UserPO 实体类生成完毕
+  2017-09-02 23:32:07,821 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(97) -UserPO 实体类生成完毕
+  2017-09-02 23:32:19,584 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(97) -UserPO 实体类生成完毕
+  2017-09-02 23:32:19,594 [ERROR] - freemarker.runtime -_Log4jLoggerFactory.java(60) -Error executing FreeMarker template
   FreeMarker template error:
 The following has evaluated to null or missing:
-==> table.generateChainStyleStterMethod  [in template "TemplateOfPO.tpl" at line 41, column 6]
+==> mapperConfig.getGenerateSelectMethodByPrimaryKey()  [in template "TmplateOfMapperClassFile.tpl" at line 14, column 6]
 
-----
-Tip: It's the step after the last dot that caused this error, not those before it.
 ----
 Tip: If the failing expression is known to be legally refer to something that's sometimes null or missing, either specify a default value like myOptionalVar!myDefault, or use <#if myOptionalVar??>when-present<#else>when-missing</#if>. (These only cover the last step of the expression; to cover the whole expression, use parenthesis: (myOptionalVar.foo)!myDefault, (myOptionalVar.foo)??
 ----
 
 ----
 FTL stack trace ("~" means nesting-related):
-	- Failed at: #if table.generateChainStyleStterMethod  [in template "TemplateOfPO.tpl" at line 41, column 1]
+	- Failed at: #if mapperConfig.getGenerateSelectMet...  [in template "TmplateOfMapperClassFile.tpl" at line 14, column 1]
 ----
 
 Java stack trace (for programmers):
@@ -88,7 +197,7 @@ freemarker.core.InvalidReferenceException: [... Exception message was already pr
 	at freemarker.core.Environment.visit(Environment.java:324)
 	at freemarker.core.Environment.process(Environment.java:302)
 	at freemarker.template.Template.process(Template.java:325)
-	at cn.hylexus.db.helper.TemplateGenerator.generateTemplate(TemplateGenerator.java:134)
+	at cn.hylexus.db.helper.TemplateGenerator.generateTemplate(TemplateGenerator.java:136)
 	at cn.hylexus.db.helper.TemplateGeneratorTest.testGenerateTemplate(TemplateGeneratorTest.java:97)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
@@ -113,5 +222,185 @@ freemarker.core.InvalidReferenceException: [... Exception message was already pr
 	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:678)
 	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:382)
 	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:192)
-2017-09-01 21:00:11,351 [ERROR] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(138) -Skip template generate , because an error occured on generate template :
+2017-09-02 23:32:19,598 [ERROR] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(140) -Skip template generate , because an error occured on generate template :
+  2017-09-02 23:32:48,153 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(97) -UserPO 实体类生成完毕
+  2017-09-02 23:32:48,164 [ERROR] - freemarker.runtime -_Log4jLoggerFactory.java(60) -Error executing FreeMarker template
+  FreeMarker template error:
+The following has evaluated to null or missing:
+==> mapperConfig.getGenerateSelectMethodByPrimaryKey()  [in template "TmplateOfMapperClassFile.tpl" at line 14, column 6]
+
+----
+Tip: If the failing expression is known to be legally refer to something that's sometimes null or missing, either specify a default value like myOptionalVar!myDefault, or use <#if myOptionalVar??>when-present<#else>when-missing</#if>. (These only cover the last step of the expression; to cover the whole expression, use parenthesis: (myOptionalVar.foo)!myDefault, (myOptionalVar.foo)??
+----
+
+----
+FTL stack trace ("~" means nesting-related):
+	- Failed at: #if mapperConfig.getGenerateSelectMet...  [in template "TmplateOfMapperClassFile.tpl" at line 14, column 1]
+----
+
+Java stack trace (for programmers):
+----
+freemarker.core.InvalidReferenceException: [... Exception message was already printed; see it above ...]
+	at freemarker.core.InvalidReferenceException.getInstance(InvalidReferenceException.java:131)
+	at freemarker.core.UnexpectedTypeException.newDesciptionBuilder(UnexpectedTypeException.java:77)
+	at freemarker.core.UnexpectedTypeException.<init>(UnexpectedTypeException.java:40)
+	at freemarker.core.NonBooleanException.<init>(NonBooleanException.java:44)
+	at freemarker.core.Expression.modelToBoolean(Expression.java:142)
+	at freemarker.core.Expression.evalToBoolean(Expression.java:125)
+	at freemarker.core.Expression.evalToBoolean(Expression.java:110)
+	at freemarker.core.ConditionalBlock.accept(ConditionalBlock.java:46)
+	at freemarker.core.Environment.visit(Environment.java:324)
+	at freemarker.core.MixedContent.accept(MixedContent.java:54)
+	at freemarker.core.Environment.visit(Environment.java:324)
+	at freemarker.core.Environment.process(Environment.java:302)
+	at freemarker.template.Template.process(Template.java:325)
+	at cn.hylexus.db.helper.TemplateGenerator.generateTemplate(TemplateGenerator.java:136)
+	at cn.hylexus.db.helper.TemplateGeneratorTest.testGenerateTemplate(TemplateGeneratorTest.java:97)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:271)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:70)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:50)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:309)
+	at org.eclipse.jdt.internal.junit4.runner.JUnit4TestReference.run(JUnit4TestReference.java:86)
+	at org.eclipse.jdt.internal.junit.runner.TestExecution.run(TestExecution.java:38)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:459)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:678)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:382)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:192)
+2017-09-02 23:32:48,167 [ERROR] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(140) -Skip template generate , because an error occured on generate template :
+  2017-09-02 23:34:27,428 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(97) -UserPO 实体类生成完毕
+  2017-09-02 23:34:47,235 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(97) -UserPO 实体类生成完毕
+  2017-09-02 23:37:08,168 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(97) -UserPO 实体类生成完毕
+  2017-09-02 23:37:08,179 [ERROR] - freemarker.runtime -_Log4jLoggerFactory.java(60) -Error executing FreeMarker template
+  FreeMarker template error:
+For "...(...)" callee: Expected a method, but this has evaluated to a boolean (wrapper: f.t.TrueTemplateBooleanModel):
+==> mapperConfig.generateInsertMethod  [in template "TmplateOfMapperClassFile.tpl" at line 17, column 6]
+
+----
+FTL stack trace ("~" means nesting-related):
+	- Failed at: #if mapperConfig.generateInsertMethod()  [in template "TmplateOfMapperClassFile.tpl" at line 17, column 1]
+----
+
+Java stack trace (for programmers):
+----
+freemarker.core.NonMethodException: [... Exception message was already printed; see it above ...]
+	at freemarker.core.MethodCall._eval(MethodCall.java:84)
+	at freemarker.core.Expression.eval(Expression.java:78)
+	at freemarker.core.Expression.evalToBoolean(Expression.java:124)
+	at freemarker.core.Expression.evalToBoolean(Expression.java:110)
+	at freemarker.core.ConditionalBlock.accept(ConditionalBlock.java:46)
+	at freemarker.core.Environment.visit(Environment.java:324)
+	at freemarker.core.MixedContent.accept(MixedContent.java:54)
+	at freemarker.core.Environment.visit(Environment.java:324)
+	at freemarker.core.Environment.process(Environment.java:302)
+	at freemarker.template.Template.process(Template.java:325)
+	at cn.hylexus.db.helper.TemplateGenerator.generateTemplate(TemplateGenerator.java:136)
+	at cn.hylexus.db.helper.TemplateGeneratorTest.testGenerateTemplate(TemplateGeneratorTest.java:97)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:271)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:70)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:50)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:309)
+	at org.eclipse.jdt.internal.junit4.runner.JUnit4TestReference.run(JUnit4TestReference.java:86)
+	at org.eclipse.jdt.internal.junit.runner.TestExecution.run(TestExecution.java:38)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:459)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:678)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:382)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:192)
+2017-09-02 23:37:08,235 [ERROR] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(140) -Skip template generate , because an error occured on generate template :
+  2017-09-02 23:37:38,192 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(97) -UserPO 实体类生成完毕
+  2017-09-02 23:37:38,204 [ERROR] - freemarker.runtime -_Log4jLoggerFactory.java(60) -Error executing FreeMarker template
+  FreeMarker template error:
+For "...(...)" callee: Expected a method, but this has evaluated to a boolean (wrapper: f.t.TrueTemplateBooleanModel):
+==> mapperConfig.generateInsertMethod  [in template "TmplateOfMapperClassFile.tpl" at line 17, column 6]
+
+----
+FTL stack trace ("~" means nesting-related):
+	- Failed at: #if mapperConfig.generateInsertMethod()  [in template "TmplateOfMapperClassFile.tpl" at line 17, column 1]
+----
+
+Java stack trace (for programmers):
+----
+freemarker.core.NonMethodException: [... Exception message was already printed; see it above ...]
+	at freemarker.core.MethodCall._eval(MethodCall.java:84)
+	at freemarker.core.Expression.eval(Expression.java:78)
+	at freemarker.core.Expression.evalToBoolean(Expression.java:124)
+	at freemarker.core.Expression.evalToBoolean(Expression.java:110)
+	at freemarker.core.ConditionalBlock.accept(ConditionalBlock.java:46)
+	at freemarker.core.Environment.visit(Environment.java:324)
+	at freemarker.core.MixedContent.accept(MixedContent.java:54)
+	at freemarker.core.Environment.visit(Environment.java:324)
+	at freemarker.core.Environment.process(Environment.java:302)
+	at freemarker.template.Template.process(Template.java:325)
+	at cn.hylexus.db.helper.TemplateGenerator.generateTemplate(TemplateGenerator.java:136)
+	at cn.hylexus.db.helper.TemplateGeneratorTest.testGenerateTemplate(TemplateGeneratorTest.java:97)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:271)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:70)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:50)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:309)
+	at org.eclipse.jdt.internal.junit4.runner.JUnit4TestReference.run(JUnit4TestReference.java:86)
+	at org.eclipse.jdt.internal.junit.runner.TestExecution.run(TestExecution.java:38)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:459)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:678)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:382)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:192)
+2017-09-02 23:37:38,209 [ERROR] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(140) -Skip template generate , because an error occured on generate template :
+  2017-09-02 23:38:12,836 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(97) -UserPO 实体类生成完毕
+  2017-09-02 23:38:21,069 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(97) -UserPO 实体类生成完毕
+  2017-09-02 23:39:12,581 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(97) -UserPO 实体类生成完毕
+  2017-09-02 23:39:56,611 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(97) -UserPO 实体类生成完毕
+  2017-09-02 23:40:13,028 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(97) -UserPO 实体类生成完毕
+  2017-09-02 23:41:28,411 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(97) -UserPO 实体类生成完毕
+  2017-09-02 23:41:28,417 [ERROR] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(140) -Skip template generate , because an error occured on generate template :
+  2017-09-02 23:41:40,100 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(97) -UserPO 实体类生成完毕
+  2017-09-02 23:41:40,107 [ERROR] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(140) -Skip template generate , because an error occured on generate template :
+  2017-09-02 23:41:56,763 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(97) -UserPO 实体类生成完毕
+  2017-09-02 23:41:56,769 [ERROR] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(140) -Skip template generate , because an error occured on generate template :
+  2017-09-02 23:42:04,187 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(97) -UserPO 实体类生成完毕
+  2017-09-02 23:42:04,193 [ERROR] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(140) -Skip template generate , because an error occured on generate template :
+  2017-09-02 23:42:57,707 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(97) -UserPO 实体类生成完毕
+  2017-09-02 23:42:57,713 [ERROR] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(140) -Skip template generate , because an error occured on generate template :
+  2017-09-02 23:44:02,159 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(97) -UserPO 实体类生成完毕
+  2017-09-02 23:46:08,267 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(97) -UserPO 实体类生成完毕
+  2017-09-02 23:46:22,447 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(97) -UserPO 实体类生成完毕
+  2017-09-02 23:47:13,024 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(97) -UserPO 实体类生成完毕
+  2017-09-02 23:48:00,645 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(97) -UserPO 实体类生成完毕
+  2017-09-02 23:48:21,617 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(97) -UserPO 实体类生成完毕
   
