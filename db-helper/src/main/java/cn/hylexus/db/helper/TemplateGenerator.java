@@ -94,62 +94,111 @@ public class TemplateGenerator {
 				// 是否应该生成实体类
 				if (globalConfig.map(Globalconfig::isGenerateModelClass).orElse(true)) {
 					this.generateModelClass(globalConfig, modelConfig, tableConfig, info);
-					logger.info("{} 实体类生成完毕", info.getModelName());
+					logger.info("{}.java 实体类生成完毕", info.getModelName());
 				}
 
 				// 是否应该生成XXXMapper.java文件
 				if (globalConfig.map(Globalconfig::isGenerateMybatisMapperClass).orElse(true)) {
-					System.out.println("...");
+					generateMybatisMapperClass(globalConfig, mapperConfig, info);
+					logger.info("{}.java 数据访问对象生成完毕", info.getMapperClassName());
 				}
 
-				FileWriter writer = null;
-				try {
-
-					if (info.getPrimaryKeys().size() > 1) {
-						throw new NotYetImplementedException("多个主键的支持会在后续版本实现");
-					}
-
-					String modelClassPath = String.join("/", //
-							globalConfig.map(Globalconfig::getBaseDir).orElseThrow(() -> new DBHelperCommonException("请指定模板位置:globalConfig.baseDir")), //
-							"src/main/java/", //
-							info.getMapperClassPackageName().replaceAll("\\.", "/"), //
-							info.getMapperClassName()//
-					);
-					File file = new File(FilenameUtils.normalize(modelClassPath + ".java", true));
-
-					// 不应该覆盖已经存在的实体类???
-					// if (!modelConfig.map(Modelconfig::getOverrideIfExists).orElse(true)) {
-					// if (file.exists()) {
-					// return;
-					// }
-					// }
-
-					if (!file.getParentFile().exists()) {
-						file.getParentFile().mkdirs();
-						file.createNewFile();
-					}
-					writer = new FileWriter(file);
-					final Template template = this.getTemplate(DBHelperContext.tmplate_file_name_of_mapper);
-					final StringWriter sw = new StringWriter();
-					final XHRMap dataModel = new XHRMap().kv("table", info).kv("mapperConfig", mapperConfig.get());
-
-					template.process(dataModel, sw);
-					System.out.println(sw);
-					writer.write(sw.toString());
-				} catch (Exception e) {
-					logger.error("Skip template generate , because an error occured on generate template :");
-					e.printStackTrace();
-					return;
-				} finally {
-					if (writer != null) {
-						writer.close();
-					}
+				// 是否应该生成XXXMapper.xml文件
+				if (globalConfig.map(Globalconfig::isGenerateMybatisXmlFile).orElse(true)) {
+					generateMybatisMapperXMLFile(globalConfig, mapperConfig, info);
+					logger.info("{}.xml sql文件生成完毕", info.getMapperClassName());
 				}
 
 			}
 
 		} finally {
 			this.releaseResource();
+		}
+	}
+
+	private void generateMybatisMapperXMLFile(Optional<Globalconfig> globalConfig, Optional<MapperClassConfig> mapperConfig, TableInfo info) {
+		FileWriter writer = null;
+		try {
+
+			if (info.getPrimaryKeys().size() > 1) {
+				throw new NotYetImplementedException("多个主键的支持会在后续版本实现");
+			}
+
+			String modelClassPath = String.join("/", //
+					globalConfig.map(Globalconfig::getBaseDir).orElseThrow(() -> new DBHelperCommonException("请指定模板位置:globalConfig.baseDir")), //
+					"src/main/resources/", //
+					info.getMapperClassPackageName().replaceAll("\\.", "/"), //
+					info.getMapperClassName()//
+			);
+			File file = new File(FilenameUtils.normalize(modelClassPath + ".xml", true));
+
+			// 不应该覆盖已经存在的实体类???
+			if (!mapperConfig.map(MapperClassConfig::getOverrideIfExists).orElse(true)) {
+				if (file.exists()) {
+					return;
+				}
+			}
+
+			if (!file.getParentFile().exists()) {
+				file.getParentFile().mkdirs();
+				file.createNewFile();
+			}
+			writer = new FileWriter(file);
+			final Template template = this.getTemplate(DBHelperContext.tmplate_file_name_of_mapper_xml);
+			final StringWriter sw = new StringWriter();
+			final XHRMap dataModel = new XHRMap().kv("table", info).kv("mapperConfig", mapperConfig.get());
+
+			template.process(dataModel, sw);
+			System.out.println(sw);
+			writer.write(sw.toString());
+		} catch (Exception e) {
+			logger.error("Skip template generate , because an error occured on generate template :");
+			e.printStackTrace();
+		} finally {
+			DBHelperUtils.release(writer);
+		}
+	}
+
+	private void generateMybatisMapperClass(final Optional<Globalconfig> globalConfig, final Optional<MapperClassConfig> mapperConfig, TableInfo info) throws IOException {
+		FileWriter writer = null;
+		try {
+
+			if (info.getPrimaryKeys().size() > 1) {
+				throw new NotYetImplementedException("多个主键的支持会在后续版本实现");
+			}
+
+			String modelClassPath = String.join("/", //
+					globalConfig.map(Globalconfig::getBaseDir).orElseThrow(() -> new DBHelperCommonException("请指定模板位置:globalConfig.baseDir")), //
+					"src/main/java/", //
+					info.getMapperClassPackageName().replaceAll("\\.", "/"), //
+					info.getMapperClassName()//
+			);
+			File file = new File(FilenameUtils.normalize(modelClassPath + ".java", true));
+
+			// 不应该覆盖已经存在的实体类???
+			if (!mapperConfig.map(MapperClassConfig::getOverrideIfExists).orElse(true)) {
+				if (file.exists()) {
+					return;
+				}
+			}
+
+			if (!file.getParentFile().exists()) {
+				file.getParentFile().mkdirs();
+				file.createNewFile();
+			}
+			writer = new FileWriter(file);
+			final Template template = this.getTemplate(DBHelperContext.tmplate_file_name_of_mapper);
+			final StringWriter sw = new StringWriter();
+			final XHRMap dataModel = new XHRMap().kv("table", info).kv("mapperConfig", mapperConfig.get());
+
+			template.process(dataModel, sw);
+			// System.out.println(sw);
+			writer.write(sw.toString());
+		} catch (Exception e) {
+			logger.error("Skip template generate , because an error occured on generate template :");
+			e.printStackTrace();
+		} finally {
+			DBHelperUtils.release(writer);
 		}
 	}
 
@@ -189,9 +238,7 @@ public class TemplateGenerator {
 			e.printStackTrace();
 			return;
 		} finally {
-			if (writer != null) {
-				writer.close();
-			}
+			DBHelperUtils.release(writer);
 		}
 	}
 

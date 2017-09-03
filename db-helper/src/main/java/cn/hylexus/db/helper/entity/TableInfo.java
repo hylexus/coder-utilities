@@ -13,6 +13,7 @@ import cn.hylexus.db.helper.exception.DBHelperCommonException;
 
 public class TableInfo {
 
+	public static final String escape_sharp = "#";
 	private String modelPackageName;
 	private String mapperClassPackageName;
 	private String tableName;
