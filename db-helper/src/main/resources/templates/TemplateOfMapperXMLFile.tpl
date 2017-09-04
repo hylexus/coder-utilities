@@ -6,7 +6,7 @@
 <#assign size = table.cols?size>
 
 <#if mapperConfig.getGenerateSelectMethodByPrimaryKey()>
-	<select id="findByPrimaryKey" resultType="map">
+	<select id="findByPrimaryKey" resultType="${table.modelPackageName}.${table.getModelName()}">
 		SELECT
 		<#list table.cols as c>
 			${c.name} AS ${c.getFieldName()}<#if (c_index?if_exists+1 !=size)>,</#if>
@@ -33,4 +33,35 @@
 	</insert>
 </#if>
 
+<#if mapperConfig.getGenerateUpdateMethod()>
+	<update id="update" parameterType="${table.modelPackageName}.${table.getModelName()}">
+		update ${table.tableName}
+		<set>
+			<#list table.cols as c>
+			<if test="code != null">
+				${c.name} = ${sharp}{${c.getFieldName()}},
+			</if>
+			</#list>
+		</set>
+		where ${table.primaryKeys[0].name} = ${sharp}{${table.primaryKeys[0].getFieldName()}}
+	</update>
+</#if>
+
+<#if mapperConfig.getGenerateDeleteMethodByPrimaryKey()>
+	<delete id="deleteByPrimaryKey">
+	    delete from ${table.tableName}
+	    WHERE ${table.primaryKeys[0].name} = ${sharp}{id}
+	</delete>
+</#if>
+
+<#if mapperConfig.getGenerateFinalAllMethod()>
+	<select id="findAll" resultType="${table.modelPackageName}.${table.getModelName()}">
+		SELECT
+		<#list table.cols as c>
+			${c.name} AS ${c.getFieldName()}<#if (c_index?if_exists+1 !=size)>,</#if>
+		</#list>
+		FROM
+			${table.tableName}
+	</select>
+</#if>
 </mapper>
