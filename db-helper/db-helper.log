@@ -1,137 +1,43 @@
-2017-09-04 19:26:45,721 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(97) -UserPO.java 实体类生成完毕
-  2017-09-04 19:26:45,735 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(103) -UserPOMapper.java 数据访问对象生成完毕
-  2017-09-04 19:26:45,820 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(109) -UserPOMapper.xml sql文件生成完毕
-  2017-09-04 19:31:36,344 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(97) -UserPO.java 实体类生成完毕
-  2017-09-04 19:31:36,358 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(103) -UserPOMapper.java 数据访问对象生成完毕
-  2017-09-04 19:31:36,391 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(109) -UserPOMapper.xml sql文件生成完毕
-  2017-09-04 19:32:09,015 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(97) -UserPO.java 实体类生成完毕
-  2017-09-04 19:32:09,028 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(103) -UserPOMapper.java 数据访问对象生成完毕
-  2017-09-04 19:32:09,064 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(109) -UserPOMapper.xml sql文件生成完毕
-  2017-09-04 19:33:14,520 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(97) -UserPO.java 实体类生成完毕
-  2017-09-04 19:33:14,538 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(103) -UserPOMapper.java 数据访问对象生成完毕
-  2017-09-04 19:33:14,607 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(109) -UserPOMapper.xml sql文件生成完毕
-  2017-09-04 19:33:40,473 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(97) -UserPO.java 实体类生成完毕
-  2017-09-04 19:33:40,488 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(103) -UserPOMapper.java 数据访问对象生成完毕
-  2017-09-04 19:33:40,524 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(109) -UserPOMapper.xml sql文件生成完毕
-  2017-09-04 19:42:45,568 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(97) -UserPO.java 实体类生成完毕
-  2017-09-04 19:42:45,582 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(103) -UserPOMapper.java 数据访问对象生成完毕
-  2017-09-04 19:42:45,612 [ERROR] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(155) -Skip template generate , because an error occured on generate template :
-  2017-09-04 19:42:45,613 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(109) -UserPOMapper.xml sql文件生成完毕
-  2017-09-04 19:43:07,961 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(97) -UserPO.java 实体类生成完毕
-  2017-09-04 19:43:07,975 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(103) -UserPOMapper.java 数据访问对象生成完毕
-  2017-09-04 19:43:08,007 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(109) -UserPOMapper.xml sql文件生成完毕
-  2017-09-04 19:44:00,534 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(97) -UserPO.java 实体类生成完毕
-  2017-09-04 19:44:00,549 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(103) -UserPOMapper.java 数据访问对象生成完毕
-  2017-09-04 19:44:00,584 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(109) -UserPOMapper.xml sql文件生成完毕
-  2017-09-04 19:44:09,860 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(97) -UserPO.java 实体类生成完毕
-  2017-09-04 19:44:09,874 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(103) -UserPOMapper.java 数据访问对象生成完毕
-  2017-09-04 19:44:09,914 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(109) -UserPOMapper.xml sql文件生成完毕
-  2017-09-04 19:44:15,925 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(97) -UserPO.java 实体类生成完毕
-  2017-09-04 19:44:15,939 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(103) -UserPOMapper.java 数据访问对象生成完毕
-  2017-09-04 19:44:15,974 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(109) -UserPOMapper.xml sql文件生成完毕
-  2017-09-04 19:45:48,047 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(97) -UserPO.java 实体类生成完毕
-  2017-09-04 19:45:48,060 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(103) -UserPOMapper.java 数据访问对象生成完毕
-  2017-09-04 19:45:48,096 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(109) -UserPOMapper.xml sql文件生成完毕
-  2017-09-04 19:47:04,462 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(97) -UserPO.java 实体类生成完毕
-  2017-09-04 19:47:04,476 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(103) -UserPOMapper.java 数据访问对象生成完毕
-  2017-09-04 19:47:04,510 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(109) -UserPOMapper.xml sql文件生成完毕
-  2017-09-04 19:47:59,875 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(97) -UserPO.java 实体类生成完毕
-  2017-09-04 19:47:59,889 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(103) -UserPOMapper.java 数据访问对象生成完毕
-  2017-09-04 19:47:59,924 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(109) -UserPOMapper.xml sql文件生成完毕
-  2017-09-04 19:48:23,434 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(97) -UserPO.java 实体类生成完毕
-  2017-09-04 19:48:23,448 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(103) -UserPOMapper.java 数据访问对象生成完毕
-  2017-09-04 19:48:23,481 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(109) -UserPOMapper.xml sql文件生成完毕
-  2017-09-04 19:49:00,285 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(97) -UserPO.java 实体类生成完毕
-  2017-09-04 19:49:00,299 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(103) -UserPOMapper.java 数据访问对象生成完毕
-  2017-09-04 19:49:00,333 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(109) -UserPOMapper.xml sql文件生成完毕
-  2017-09-04 19:49:30,846 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(97) -UserPO.java 实体类生成完毕
-  2017-09-04 19:49:30,860 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(103) -UserPOMapper.java 数据访问对象生成完毕
-  2017-09-04 19:49:30,894 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(109) -UserPOMapper.xml sql文件生成完毕
-  2017-09-04 19:50:04,007 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(97) -UserPO.java 实体类生成完毕
-  2017-09-04 19:50:04,021 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(103) -UserPOMapper.java 数据访问对象生成完毕
-  2017-09-04 19:50:04,057 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(109) -UserPOMapper.xml sql文件生成完毕
-  2017-09-04 19:50:50,284 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(97) -UserPO.java 实体类生成完毕
-  2017-09-04 19:50:50,297 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(103) -UserPOMapper.java 数据访问对象生成完毕
-  2017-09-04 19:50:50,334 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(109) -UserPOMapper.xml sql文件生成完毕
-  2017-09-04 19:51:10,189 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(97) -UserPO.java 实体类生成完毕
-  2017-09-04 19:51:10,203 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(103) -UserPOMapper.java 数据访问对象生成完毕
-  2017-09-04 19:51:10,239 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(109) -UserPOMapper.xml sql文件生成完毕
-  2017-09-04 19:53:24,106 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(97) -UserPO.java 实体类生成完毕
-  2017-09-04 19:53:24,120 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(103) -UserPOMapper.java 数据访问对象生成完毕
-  2017-09-04 19:53:24,152 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(109) -UserPOMapper.xml sql文件生成完毕
-  2017-09-04 19:54:22,615 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(97) -UserPO.java 实体类生成完毕
-  2017-09-04 19:54:22,629 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(103) -UserPOMapper.java 数据访问对象生成完毕
-  2017-09-04 19:54:22,679 [ERROR] - freemarker.runtime -_Log4jLoggerFactory.java(60) -Error executing FreeMarker template
-  FreeMarker template error:
-The following has evaluated to null or missing:
-==> sendTime  [in template "TemplateOfMapperXMLFile.tpl" at line 52, column 69]
-
-----
-Tip: If the failing expression is known to be legally refer to something that's sometimes null or missing, either specify a default value like myOptionalVar!myDefault, or use <#if myOptionalVar??>when-present<#else>when-missing</#if>. (These only cover the last step of the expression; to cover the whole expression, use parenthesis: (myOptionalVar.foo)!myDefault, (myOptionalVar.foo)??
-----
-
-----
-FTL stack trace ("~" means nesting-related):
-	- Failed at: #{sendTime}  [in template "TemplateOfMapperXMLFile.tpl" at line 52, column 67]
-----
-
-Java stack trace (for programmers):
-----
-freemarker.core.InvalidReferenceException: [... Exception message was already printed; see it above ...]
-	at freemarker.core.InvalidReferenceException.getInstance(InvalidReferenceException.java:131)
-	at freemarker.core.UnexpectedTypeException.newDesciptionBuilder(UnexpectedTypeException.java:77)
-	at freemarker.core.UnexpectedTypeException.<init>(UnexpectedTypeException.java:40)
-	at freemarker.core.NonNumericalException.<init>(NonNumericalException.java:44)
-	at freemarker.core.Expression.modelToNumber(Expression.java:105)
-	at freemarker.core.Expression.evalToNumber(Expression.java:98)
-	at freemarker.core.NumericalOutput.accept(NumericalOutput.java:56)
-	at freemarker.core.Environment.visit(Environment.java:324)
-	at freemarker.core.MixedContent.accept(MixedContent.java:54)
-	at freemarker.core.Environment.visitByHiddingParent(Environment.java:345)
-	at freemarker.core.ConditionalBlock.accept(ConditionalBlock.java:48)
-	at freemarker.core.Environment.visit(Environment.java:324)
-	at freemarker.core.MixedContent.accept(MixedContent.java:54)
-	at freemarker.core.Environment.visit(Environment.java:324)
-	at freemarker.core.Environment.process(Environment.java:302)
-	at freemarker.template.Template.process(Template.java:325)
-	at cn.hylexus.db.helper.TemplateGenerator.generateMybatisMapperXMLFile(TemplateGenerator.java:151)
-	at cn.hylexus.db.helper.TemplateGenerator.generateTemplate(TemplateGenerator.java:108)
-	at cn.hylexus.db.helper.TemplateGeneratorTest.testGenerateTemplate(TemplateGeneratorTest.java:97)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:498)
-	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)
-	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
-	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)
-	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
-	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:271)
-	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:70)
-	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:50)
-	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)
-	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)
-	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)
-	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)
-	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)
-	at org.junit.runners.ParentRunner.run(ParentRunner.java:309)
-	at org.eclipse.jdt.internal.junit4.runner.JUnit4TestReference.run(JUnit4TestReference.java:86)
-	at org.eclipse.jdt.internal.junit.runner.TestExecution.run(TestExecution.java:38)
-	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:459)
-	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:678)
-	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:382)
-	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:192)
-2017-09-04 19:54:22,683 [ERROR] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(155) -Skip template generate , because an error occured on generate template :
-  2017-09-04 19:54:22,684 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(109) -UserPOMapper.xml sql文件生成完毕
-  2017-09-04 19:54:41,161 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(97) -UserPO.java 实体类生成完毕
-  2017-09-04 19:54:41,175 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(103) -UserPOMapper.java 数据访问对象生成完毕
-  2017-09-04 19:54:41,209 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(109) -UserPOMapper.xml sql文件生成完毕
-  2017-09-04 19:55:40,278 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(97) -UserPO.java 实体类生成完毕
-  2017-09-04 19:55:40,292 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(103) -UserPOMapper.java 数据访问对象生成完毕
-  2017-09-04 19:55:40,327 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(109) -UserPOMapper.xml sql文件生成完毕
-  2017-09-04 19:56:04,262 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(97) -UserPO.java 实体类生成完毕
-  2017-09-04 19:56:04,276 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(103) -UserPOMapper.java 数据访问对象生成完毕
-  2017-09-04 19:56:04,312 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(109) -UserPOMapper.xml sql文件生成完毕
-  2017-09-04 19:58:19,656 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(97) -UserPO.java 实体类生成完毕
-  2017-09-04 19:58:19,670 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(103) -UserPOMapper.java 数据访问对象生成完毕
-  2017-09-04 19:58:19,706 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(109) -UserPOMapper.xml sql文件生成完毕
+2017-09-04 20:51:10,428 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(83) -1. 数据表:t_user
+  2017-09-04 20:51:10,603 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(96) -UserPO.java 实体类生成完毕
+  2017-09-04 20:51:10,616 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(102) -UserPOMapper.java 数据访问对象生成完毕
+  2017-09-04 20:51:10,651 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(108) -UserPOMapper.xml sql文件生成完毕
+  2017-09-04 20:51:10,651 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(110) -
+  2017-09-04 20:51:10,651 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(83) -2. 数据表:t_order
+  2017-09-04 20:51:10,662 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(96) -OrderPO.java 实体类生成完毕
+  2017-09-04 20:51:10,666 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(102) -OrderPOMapper.java 数据访问对象生成完毕
+  2017-09-04 20:51:10,673 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(108) -OrderPOMapper.xml sql文件生成完毕
+  2017-09-04 20:51:10,673 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(110) -
+  2017-09-04 20:51:45,644 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(83) -1. 为数据表:t_user 生成模板
+  2017-09-04 20:51:45,825 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(96) -UserPO.java 实体类生成完毕
+  2017-09-04 20:51:45,838 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(102) -UserPOMapper.java 数据访问对象生成完毕
+  2017-09-04 20:51:45,873 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(108) -UserPOMapper.xml sql文件生成完毕
+  2017-09-04 20:51:45,873 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(110) -
+  2017-09-04 20:51:45,874 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(83) -2. 为数据表:t_order 生成模板
+  2017-09-04 20:51:45,887 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(96) -OrderPO.java 实体类生成完毕
+  2017-09-04 20:51:45,891 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(102) -OrderPOMapper.java 数据访问对象生成完毕
+  2017-09-04 20:51:45,900 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(108) -OrderPOMapper.xml sql文件生成完毕
+  2017-09-04 20:51:45,901 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(110) -
+  2017-09-04 20:52:11,744 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(83) -1. 为数据表:t_user 生成模板
+  2017-09-04 20:52:11,928 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(96) -UserPO.java 实体类生成完毕
+  2017-09-04 20:52:11,940 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(102) -UserPOMapper.java 数据访问对象生成完毕
+  2017-09-04 20:52:11,979 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(108) -UserPOMapper.xml sql文件生成完毕
+  2017-09-04 20:52:11,979 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(110) -
+  2017-09-04 20:52:11,979 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(83) -2. 为数据表:t_order 生成模板
+  2017-09-04 20:52:11,990 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(96) -OrderPO.java 实体类生成完毕
+  2017-09-04 20:52:11,996 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(102) -OrderPOMapper.java 数据访问对象生成完毕
+  2017-09-04 20:52:12,002 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(108) -OrderPOMapper.xml sql文件生成完毕
+  2017-09-04 20:52:12,002 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(110) -
+  2017-09-04 20:56:07,612 [ INFO] - cn.hylexus.db.helper.utils.TemplateGeneratorUtils -TemplateGeneratorUtils.java(49) -开始生成模板
+  2017-09-04 20:56:07,876 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(83) -1. 为数据表:t_user 生成模板
+  2017-09-04 20:56:08,061 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(96) -UserPO.java 实体类生成完毕
+  2017-09-04 20:56:08,075 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(102) -UserPOMapper.java 数据访问对象生成完毕
+  2017-09-04 20:56:08,108 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(108) -UserPOMapper.xml sql文件生成完毕
+  2017-09-04 20:56:08,108 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(110) -
+  2017-09-04 20:56:08,109 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(83) -2. 为数据表:t_order 生成模板
+  2017-09-04 20:56:08,122 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(96) -OrderPO.java 实体类生成完毕
+  2017-09-04 20:56:08,126 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(102) -OrderPOMapper.java 数据访问对象生成完毕
+  2017-09-04 20:56:08,135 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(108) -OrderPOMapper.xml sql文件生成完毕
+  2017-09-04 20:56:08,136 [ INFO] - cn.hylexus.db.helper.TemplateGenerator -TemplateGenerator.java(110) -
+  2017-09-04 20:56:08,136 [ INFO] - cn.hylexus.db.helper.utils.TemplateGeneratorUtils -TemplateGeneratorUtils.java(56) -模板生成完毕
   

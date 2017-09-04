@@ -1,10 +1,11 @@
 package cn.hylexus.db.helper;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.StringWriter;
+import java.net.URL;
+import java.net.URLClassLoader;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
@@ -15,12 +16,12 @@ import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import cn.hylexus.db.helper.config.DBHelperContext;
 import cn.hylexus.db.helper.config.GeneratorConfig;
 import cn.hylexus.db.helper.config.GeneratorConfig.Globalconfig;
 import cn.hylexus.db.helper.config.GeneratorConfig.MapperClassConfig;
 import cn.hylexus.db.helper.config.GeneratorConfig.Modelconfig;
 import cn.hylexus.db.helper.config.GeneratorConfig.TableConfig;
-import cn.hylexus.db.helper.converter.naming.NamingStrategy;
 import cn.hylexus.db.helper.entity.TableInfo;
 import cn.hylexus.db.helper.exception.DBHelperCommonException;
 import cn.hylexus.db.helper.exception.NotYetImplementedException;
@@ -61,7 +62,7 @@ public class TemplateGenerator {
 		this.context = context;
 	}
 
-	public void generateTemplate() throws DBHelperCommonException, IOException {
+	public void generateTemplate(final Connection connection) throws DBHelperCommonException, IOException {
 		try {
 
 			final GeneratorConfig config = context.getConfig();
@@ -73,15 +74,15 @@ public class TemplateGenerator {
 			config.getGlobalConfig().setNamingStrategy(DBHelperUtils.getNamingStrategyInstance(config.getGlobalConfig().getNamingStrategyClassName()));
 			config.getModelConfig().setNamingStrategy(DBHelperUtils.getNamingStrategyInstance(config.getModelConfig().getNamingStrategyClassName()));
 
-			final Connection connection = context.getConnection();
-
 			final Optional<Modelconfig> modelConfig = Optional.ofNullable(config.getModelConfig());
 			final Optional<Globalconfig> globalConfig = Optional.ofNullable(config.getGlobalConfig());
 			final Optional<MapperClassConfig> mapperConfig = Optional.ofNullable(config.getMapperClassConfig());
 
 			final List<TableConfig> tableConfigs = config.getTableConfig();
-			for (TableConfig tableConfig : tableConfigs) {
+			for (int i = 0; i < tableConfigs.size(); i++) {
+				final TableConfig tableConfig = tableConfigs.get(i);
 				TableInfo info = null;
+				logger.info("{}. 为数据表:{} 生成模板", i + 1, tableConfig.getTableName());
 				try {
 					info = this.converte2TableInfo(globalConfig, modelConfig, mapperConfig, tableConfig, connection);
 				} catch (Exception e) {
@@ -108,11 +109,11 @@ public class TemplateGenerator {
 					generateMybatisMapperXMLFile(globalConfig, mapperConfig, info);
 					logger.info("{}.xml sql文件生成完毕", info.getMapperClassName());
 				}
-
+				logger.info("");
 			}
 
 		} finally {
-			this.releaseResource();
+			// nothing to do
 		}
 	}
 
@@ -149,7 +150,7 @@ public class TemplateGenerator {
 			final XHRMap dataModel = new XHRMap().kv("table", info).kv("mapperConfig", mapperConfig.get());
 
 			template.process(dataModel, sw);
-			System.out.println(sw);
+			// System.out.println(sw);
 			writer.write(sw.toString());
 		} catch (Exception e) {
 			logger.error("Skip template generate , because an error occured on generate template :");
@@ -298,22 +299,15 @@ public class TemplateGenerator {
 	private Template getTemplate(String templateName) throws IOException, TemplateNotFoundException, MalformedTemplateNameException, ParseException {
 		final Version version = Configuration.VERSION_2_3_23;
 		Configuration configuration = new Configuration(version);
-		configuration.setDirectoryForTemplateLoading(new File(template_base_directory));
+		URLClassLoader classLoader = (URLClassLoader) ClassLoader.getSystemClassLoader();
+		URL templatePath = classLoader.findResource("templates");
+		configuration.setDirectoryForTemplateLoading(new File(templatePath.getFile()));
+		// configuration.setDirectoryForTemplateLoading(new
+		// File(System.getProperty("user.dir") + "/" + template_base_directory));
 		configuration.setObjectWrapper(new DefaultObjectWrapper(version));
 		configuration.setDefaultEncoding("UTF-8");
 		Template template = configuration.getTemplate(templateName);
 		return template;
 	}
 
-	private void releaseResource() {
-		if (this.context != null) {
-			if (this.context.getConnection() != null) {
-				try {
-					this.context.getConnection().close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-		}
-	}
 }

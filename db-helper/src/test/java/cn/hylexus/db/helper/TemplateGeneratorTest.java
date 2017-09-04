@@ -15,6 +15,7 @@ import org.junit.Test;
 
 import com.alibaba.fastjson.JSON;
 
+import cn.hylexus.db.helper.config.DBHelperContext;
 import cn.hylexus.db.helper.config.GeneratorConfig;
 import cn.hylexus.db.helper.config.GeneratorConfig.TableConfig;
 import cn.hylexus.db.helper.converter.MySqlTypeConverter;
@@ -84,7 +85,7 @@ public class TemplateGeneratorTest {
 		}
 
 		try {
-			DBHelperContext context = new DBHelperContext().connection(getConnection()).config(generatorConfig);
+			DBHelperContext context = new DBHelperContext().config(generatorConfig);
 			this.generator = new TemplateGenerator(context, new DefaultDatabaseMetaDataAccessor().converter(new MySqlTypeConverter()));
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -94,7 +95,7 @@ public class TemplateGeneratorTest {
 	@Test
 	public void testGenerateTemplate() {
 		try {
-			this.generator.generateTemplate();
+			this.generator.generateTemplate(getConnection());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

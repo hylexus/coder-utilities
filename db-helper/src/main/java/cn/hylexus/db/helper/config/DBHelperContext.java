@@ -1,8 +1,4 @@
-package cn.hylexus.db.helper;
-
-import java.sql.Connection;
-
-import cn.hylexus.db.helper.config.GeneratorConfig;
+package cn.hylexus.db.helper.config;
 
 public class DBHelperContext {
 
@@ -10,10 +6,14 @@ public class DBHelperContext {
 	public static final String tmplate_file_name_of_mapper = "TmplateOfMapperClassFile.tpl";
 	public static final String tmplate_file_name_of_mapper_xml = "TemplateOfMapperXMLFile.tpl";
 
-	private Connection connection;
 	private GeneratorConfig config;
 
 	public DBHelperContext() {
+	}
+
+	public DBHelperContext(GeneratorConfig config) {
+		super();
+		this.config = config;
 	}
 
 	public void setConfig(GeneratorConfig config) {
@@ -27,24 +27,6 @@ public class DBHelperContext {
 
 	public GeneratorConfig getConfig() {
 		return config;
-	}
-
-	public DBHelperContext(Connection connection) {
-		super();
-		this.connection = connection;
-	}
-
-	public Connection getConnection() {
-		return connection;
-	}
-
-	public void setConnection(Connection connection) {
-		this.connection = connection;
-	}
-
-	public DBHelperContext connection(Connection connection) {
-		this.connection = connection;
-		return this;
 	}
 
 }

@@ -14,6 +14,7 @@ public class MySqlTypeConverter implements SqlTypeConverter {
 
 	static {
 		map.put(Types.INTEGER, new JavaType().typeCode(Types.INTEGER).class_(Integer.class));
+		map.put(Types.SMALLINT, new JavaType().typeCode(Types.SMALLINT).class_(Boolean.class));
 		map.put(Types.BIGINT, new JavaType().typeCode(Types.BIGINT).class_(Long.class));
 		map.put(Types.REAL, new JavaType().typeCode(Types.REAL).class_(Float.class));
 		map.put(Types.DOUBLE, new JavaType().typeCode(Types.DOUBLE).class_(Double.class));

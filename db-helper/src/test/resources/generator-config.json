@@ -20,6 +20,9 @@
 			"generateChainStyleStterMethod": false,
 			"mapperClassPackageName": "com.hylexus.test.dao",
 			"mapperClassName": ""
+		},
+		{
+			"tableName": "t_order"
 		}
 	],
 	"modelConfig": {
