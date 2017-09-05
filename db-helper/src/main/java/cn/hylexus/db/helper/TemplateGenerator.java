@@ -4,8 +4,6 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.StringWriter;
-import java.net.URL;
-import java.net.URLClassLoader;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
@@ -30,6 +28,7 @@ import cn.hylexus.db.helper.utils.DBHelperUtils;
 import cn.hylexus.db.helper.utils.DatabaseMetaDataAccessor;
 import cn.hylexus.db.helper.utils.DefaultDatabaseMetaDataAccessor;
 import cn.hylexus.db.helper.utils.XHRMap;
+import freemarker.cache.ClassTemplateLoader;
 import freemarker.core.ParseException;
 import freemarker.template.Configuration;
 import freemarker.template.DefaultObjectWrapper;
@@ -41,7 +40,7 @@ import freemarker.template.Version;
 public class TemplateGenerator {
 
 	private static final Logger logger = LoggerFactory.getLogger(TemplateGenerator.class);
-	private static final String template_base_directory = "src/main/resources/templates";
+	private static final String template_base_directory = "/templates";
 	private DBHelperContext context;
 	private DatabaseMetaDataAccessor dataAccessor = new DefaultDatabaseMetaDataAccessor();
 
@@ -82,7 +81,7 @@ public class TemplateGenerator {
 			for (int i = 0; i < tableConfigs.size(); i++) {
 				final TableConfig tableConfig = tableConfigs.get(i);
 				TableInfo info = null;
-				logger.info("{}. 为数据表:{} 生成模板", i + 1, tableConfig.getTableName());
+				logger.info("{}. 为数据表 {} 生成模板", i + 1, tableConfig.getTableName());
 				try {
 					info = this.converte2TableInfo(globalConfig, modelConfig, mapperConfig, tableConfig, connection);
 				} catch (Exception e) {
@@ -292,18 +291,15 @@ public class TemplateGenerator {
 		info.setTrimmedPrefix(modelConfig.map(Modelconfig::getTrimmedPrefix).orElse(""));
 		info.setAppendedPrefix(modelConfig.map(Modelconfig::getAppendedPrefix).orElse(""));
 		info.setAppendedSufix(modelConfig.map(Modelconfig::getAppendedSufix).orElse(""));
-		info.setAppendedPrefix4MapperClass(mapperConfig.map(MapperClassConfig::getAppendedSufix).orElse(""));
+		info.setAppendedSufix4MapperClass(mapperConfig.map(MapperClassConfig::getAppendedSufix).orElse("Mapper"));
 		return info;
 	}
 
 	private Template getTemplate(String templateName) throws IOException, TemplateNotFoundException, MalformedTemplateNameException, ParseException {
 		final Version version = Configuration.VERSION_2_3_23;
 		Configuration configuration = new Configuration(version);
-		URLClassLoader classLoader = (URLClassLoader) ClassLoader.getSystemClassLoader();
-		URL templatePath = classLoader.findResource("templates");
-		configuration.setDirectoryForTemplateLoading(new File(templatePath.getFile()));
-		// configuration.setDirectoryForTemplateLoading(new
-		// File(System.getProperty("user.dir") + "/" + template_base_directory));
+		// configuration.setDirectoryForTemplateLoading(getFile());
+		configuration.setTemplateLoader(new ClassTemplateLoader(this.getClass().getClassLoader(), template_base_directory));
 		configuration.setObjectWrapper(new DefaultObjectWrapper(version));
 		configuration.setDefaultEncoding("UTF-8");
 		Template template = configuration.getTemplate(templateName);

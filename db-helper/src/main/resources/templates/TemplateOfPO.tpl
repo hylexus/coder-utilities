@@ -2,10 +2,8 @@
 package ${table.modelPackageName};
 </#if>
 
-<#list table.cols as c>
-	<#if c.javaType.isNeedGenerateImportStatement()>
-import ${c.javaType.getClass_().getName()};
-	</#if>
+<#list table.getShouldBeImportedClassNames() as c>
+import ${c};
 </#list>
 
 public class ${table.getModelName()}{

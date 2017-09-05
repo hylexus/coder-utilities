@@ -2,6 +2,7 @@ package cn.hylexus.db.helper.entity;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -27,13 +28,20 @@ public class TableInfo {
 	// others
 	private String trimmedPrefix = "";
 	private String appendedPrefix = "";
-	private String appendedPrefix4MapperClass = "";
+	private String appendedSufix4MapperClass = "";
 	private String appendedSufix = "";
 
 	// naming strategy
 	private NamingStrategy namingStrategy;
 	private String sprcifiedModelName;
 	private String sprcifiedMapperClassName;
+
+	public List<String> getShouldBeImportedClassNames() {
+		if (this.getCols() != null && this.getCols().size() > 0) {
+			return this.getCols().stream().map(e -> e.getJavaType().getClass_().getName()).distinct().collect(Collectors.toList());
+		}
+		return new ArrayList<>();
+	}
 
 	public List<ColumnInfo> getPrimaryKeys() {
 		return primaryKeys;
@@ -48,17 +56,17 @@ public class TableInfo {
 		return this;
 	}
 
-	public String getAppendedPrefix4MapperClass() {
-		return appendedPrefix4MapperClass;
+	public String getAppendedSufix4MapperClass() {
+		return appendedSufix4MapperClass;
 	}
 
-	public void setAppendedPrefix4MapperClass(String appendedPrefix4MapperClass) {
-		this.appendedPrefix4MapperClass = appendedPrefix4MapperClass;
+	public void setAppendedSufix4MapperClass(String appendedSufix4MapperClass) {
+		this.appendedSufix4MapperClass = appendedSufix4MapperClass;
 	}
 
 	public String getMapperClassName() throws DBHelperCommonException {
 		if (StringUtils.isBlank(this.getSprcifiedMapperClassName())) {
-			return this.getModelName() + this.getAppendedPrefix4MapperClass();
+			return this.getModelNameNoSufix() + this.getAppendedSufix4MapperClass();
 		}
 		return this.getSprcifiedMapperClassName();
 	}
@@ -90,16 +98,25 @@ public class TableInfo {
 	public String getModelName() throws DBHelperCommonException {
 
 		if (StringUtils.isBlank(this.getSprcifiedModelName())) {
-			return this.namingStrategy.getClassName(this.getTableNameTrimmed());
+			return this.namingStrategy.getClassName(this.getTableNameStr(true));
 		}
 		return this.getSprcifiedModelName();
 
 	}
 
-	private String getTableNameTrimmed() {
+	public String getModelNameNoSufix() throws DBHelperCommonException {
+
+		if (StringUtils.isBlank(this.getSprcifiedModelName())) {
+			return this.namingStrategy.getClassName(this.getTableNameStr(false));
+		}
+		return this.getSprcifiedModelName();
+
+	}
+
+	private String getTableNameStr(boolean withSufix) {
 		if (StringUtils.isBlank(this.tableName))
 			return null;
-		return this.getAppendedPrefix() + tableName.replaceFirst(this.getTrimmedPrefix(), "") + this.getAppendedSufix();
+		return this.getAppendedPrefix() + tableName.replaceFirst(this.getTrimmedPrefix(), "") + (withSufix ? this.getAppendedSufix() : "");
 	}
 
 	public void setNamingStrategy(NamingStrategy namingStrategy) {
